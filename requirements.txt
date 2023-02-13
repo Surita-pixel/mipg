@@ -1,0 +1,4 @@
+Django>=3,<4
+django-extensions
+djangorestframework
+django-htmx

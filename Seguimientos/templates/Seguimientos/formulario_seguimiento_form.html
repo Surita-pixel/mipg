@@ -1,0 +1,44 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    
+<p>
+    <a class="btn btn-light" href="{% url 'Seguimientos_Formulario_Seguimiento_list' %}">
+    Formulario_Seguimiento Listing
+    </a>
+</p>
+    
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{form.errors}}
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="last_updated">last_updated: </label>
+      <input class="form-control col-sm-10"
+         id="last_updated" type="datetime-local"
+         name="last_updated" value="{{ object.last_updated }}" disabled>
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="created">created: </label>
+      <input class="form-control col-sm-10"
+         id="created" type="datetime-local"
+         name="created" value="{{ object.created }}" disabled>
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="seguimiento_name">seguimiento_name: </label>
+      <input class="form-control col-sm-10"'
+         id="seguimiento_name" type="text"
+         name="seguimiento_name" value="{{ object.seguimiento_name }}">
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="Formulario_Seguimiento_Plan">Formulario_Seguimiento_Plan: </label>
+      {{ form.Formulario_Seguimiento_Plan }}
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="Formulario_Seguimiento">Formulario_Seguimiento: </label>
+      {{ form.Formulario_Seguimiento }}
+  </div>
+  <input type="submit" value="Save" class="btn btn-primary">
+</form>
+
+{% endblock %}

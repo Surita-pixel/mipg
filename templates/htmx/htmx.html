@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block extrahead %}
+<script src="https://unpkg.com/htmx.org@1.8.4"></script>
+<script>
+  htmx.config.useTemplateFragments = true;
+</script>
+{% endblock %}
+{% block allcontent %}
+<div id="content" class="container">
+  <h2>Home: <a href="{% url 'index' %}">Project1233</a></h2>
+  <div class="container">
+    <div class="row">
+    
+      <div class="col col-lg-6">
+        <h5>Add A Plan</h5>
+        <div hx-get="{% url 'app_Plan_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
+        <h4>Plan List</h4>
+        <div hx-get="{% url 'app_Plan_htmx_list' %}" hx-trigger="load">
+        </div>
+      </div>
+      <div class="col col-lg-6">
+        <h5>Add A Oficina</h5>
+        <div hx-get="{% url 'app_Oficina_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
+        <h4>Oficina List</h4>
+        <div hx-get="{% url 'app_Oficina_htmx_list' %}" hx-trigger="load">
+        </div>
+      </div>
+      <div class="col col-lg-6">
+        <h5>Add A Pregunta</h5>
+        <div hx-get="{% url 'app_Pregunta_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
+        <h4>Pregunta List</h4>
+        <div hx-get="{% url 'app_Pregunta_htmx_list' %}" hx-trigger="load">
+        </div>
+      </div>
+      <div class="col col-lg-6">
+        <h5>Add A Respuesta</h5>
+        <div hx-get="{% url 'app_Respuesta_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
+        <h4>Respuesta List</h4>
+        <div hx-get="{% url 'app_Respuesta_htmx_list' %}" hx-trigger="load">
+        </div>
+      </div>
+      <div class="col col-lg-6">
+        <h5>Add A Formulario</h5>
+        <div hx-get="{% url 'app_Formulario_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
+        <h4>Formulario List</h4>
+        <div hx-get="{% url 'app_Formulario_htmx_list' %}" hx-trigger="load">
+        </div>
+      </div>
+      <div class="col col-lg-6">
+        <h5>Add A Formulario_Seguimiento</h5>
+        <div hx-get="{% url 'app_Formulario_Seguimiento_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
+        <h4>Formulario_Seguimiento List</h4>
+        <div hx-get="{% url 'app_Formulario_Seguimiento_htmx_list' %}" hx-trigger="load">
+        </div>
+      </div>
+      <div class="col col-lg-6">
+        <h5>Add A Seguimiento</h5>
+        <div hx-get="{% url 'app_Seguimiento_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
+        <h4>Seguimiento List</h4>
+        <div hx-get="{% url 'app_Seguimiento_htmx_list' %}" hx-trigger="load">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    
+<p>
+    <a class="btn btn-light" href="{% url 'Formularios_Formulario_list' %}">
+    Formulario Listing
+    </a>
+</p>
+    
+<table class="table">
+    <tr><td>nombre</td><td>{{ object.nombre }}</td></tr>
+    <tr><td>respuestas_formulario</td><td>{{ object.respuestas_formulario }}</td></tr>
+    <tr><td>preguntas_formulario</td><td>{{ object.preguntas_formulario }}</td></tr>
+</table>
+<a class="btn btn-primary" href="{{object.get_update_url}}">Edit</a>
+
+{% endblock %}
