@@ -15,19 +15,27 @@ class RespuestaSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class FormularioSerializer(serializers.ModelSerializer):
-    respuestas_formulario = RespuestaSerializer
-    preguntas_formulario = PreguntaSerializer
+
+    pregunta =  PreguntaSerializer(many=True, read_only=True)
+
+    def to_represent(self,instance):
+        self.fields['pregunta'] = PreguntaSerializer(read_only=True)
+        return super(FormularioSerializer,self).to_represent(instance)  
 
     class Meta:
         model = models.Formulario
-        fields = '__all__'
+        fields = ['id','nombre', 'pregunta']
+        
     
     def create(self, validated_data):
         preguntas_data = validated_data.pop('preguntas_formulario')
-        respuestas_data = validated_data.pop('respuestas_formulario')
-        formulario = models.Formulario.objects.create(**validated_data)
+        
+        custom_data = {
+            **validated_data
+        }
+        formulario = models.Formulario.objects.create(**custom_data)
         for pregunta_data in preguntas_data:
             pregunta = models.Pregunta.objects.create(formulario=formulario, **pregunta_data)
-        for respuesta_data in respuestas_data:
-            respuesta = models.Respuesta.objects.create(formulario=formulario, **respuesta_data)
+        # for respuesta_data in respuestas_data:
+        #     respuesta = models.Respuesta.objects.create(formulario=formulario, **respuesta_data)
         return formulario

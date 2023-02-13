@@ -13,12 +13,11 @@ class RespuestaForm(forms.ModelForm):
 
 
 class FormularioForm(forms.ModelForm):
+    
     class Meta:
         model = models.Formulario
         fields = [
-            "nombre",
-            "respuestas_formulario",
-            "preguntas_formulario",
+            "nombre"
         ]
 
     def __init__(self, *args, **kwargs):

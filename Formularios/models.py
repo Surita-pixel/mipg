@@ -33,8 +33,7 @@ class Respuesta(models.Model):
 class Formulario(models.Model):
 
     # Relationships
-    respuestas_formulario = models.ForeignKey("Formularios.Respuesta", on_delete=models.CASCADE)
-    preguntas_formulario = models.ForeignKey("Formularios.Pregunta", on_delete=models.CASCADE)
+  
 
     # Fields
     nombre = models.TextField(max_length=100)
@@ -44,6 +43,14 @@ class Formulario(models.Model):
 
     def __str__(self):
         return str(self.pk)
+
+    def get_preguntas(self):
+        """
+        Returns the direct children of this node.
+        If there are none, it returns an empty list.
+        """
+        children = list(Pregunta.objects.filter(formulario=self))
+        return  children
 
     def get_absolute_url(self):
         return reverse("Formularios_Formulario_detail", args=(self.pk,))
@@ -65,6 +72,7 @@ class Pregunta(models.Model):
     pregunta = models.TextField(max_length=200)
     last_updated = models.DateTimeField(auto_now=True, editable=False)
     created = models.DateTimeField(auto_now=True, editable=False)
+    formulario = models.ForeignKey("Formularios.Formulario", on_delete=models.CASCADE)
 
     class Meta:
         pass
