@@ -16,11 +16,11 @@ class RespuestaSerializer(serializers.ModelSerializer):
 
 class FormularioSerializer(serializers.ModelSerializer):
 
-    pregunta =  PreguntaSerializer(many=True, read_only=True)
+    pregunta =  serializers.StringRelatedField()
 
-    def to_represent(self,instance):
+    def to_representation(self,instance):
         self.fields['pregunta'] = PreguntaSerializer(read_only=True)
-        return super(FormularioSerializer,self).to_represent(instance)  
+        return super(FormularioSerializer,self).to_representation(instance)  
 
     class Meta:
         model = models.Formulario
