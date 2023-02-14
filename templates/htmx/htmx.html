@@ -12,27 +12,6 @@
     <div class="row">
     
       <div class="col col-lg-6">
-        <h5>Add A Plan</h5>
-        <div hx-get="{% url 'app_Plan_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
-        <h4>Plan List</h4>
-        <div hx-get="{% url 'app_Plan_htmx_list' %}" hx-trigger="load">
-        </div>
-      </div>
-      <div class="col col-lg-6">
-        <h5>Add A Oficina</h5>
-        <div hx-get="{% url 'app_Oficina_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
-        <h4>Oficina List</h4>
-        <div hx-get="{% url 'app_Oficina_htmx_list' %}" hx-trigger="load">
-        </div>
-      </div>
-      <div class="col col-lg-6">
-        <h5>Add A Pregunta</h5>
-        <div hx-get="{% url 'app_Pregunta_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
-        <h4>Pregunta List</h4>
-        <div hx-get="{% url 'app_Pregunta_htmx_list' %}" hx-trigger="load">
-        </div>
-      </div>
-      <div class="col col-lg-6">
         <h5>Add A Respuesta</h5>
         <div hx-get="{% url 'app_Respuesta_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
         <h4>Respuesta List</h4>
@@ -47,10 +26,17 @@
         </div>
       </div>
       <div class="col col-lg-6">
-        <h5>Add A Formulario_Seguimiento</h5>
-        <div hx-get="{% url 'app_Formulario_Seguimiento_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
-        <h4>Formulario_Seguimiento List</h4>
-        <div hx-get="{% url 'app_Formulario_Seguimiento_htmx_list' %}" hx-trigger="load">
+        <h5>Add A Pregunta</h5>
+        <div hx-get="{% url 'app_Pregunta_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
+        <h4>Pregunta List</h4>
+        <div hx-get="{% url 'app_Pregunta_htmx_list' %}" hx-trigger="load">
+        </div>
+      </div>
+      <div class="col col-lg-6">
+        <h5>Add A Oficina</h5>
+        <div hx-get="{% url 'app_Oficina_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
+        <h4>Oficina List</h4>
+        <div hx-get="{% url 'app_Oficina_htmx_list' %}" hx-trigger="load">
         </div>
       </div>
       <div class="col col-lg-6">
@@ -58,6 +44,48 @@
         <div hx-get="{% url 'app_Seguimiento_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
         <h4>Seguimiento List</h4>
         <div hx-get="{% url 'app_Seguimiento_htmx_list' %}" hx-trigger="load">
+        </div>
+      </div>
+      <div class="col col-lg-6">
+        <h5>Add A Formulario_Seguimiento</h5>
+        <div hx-get="{% url 'app_Formulario_Seguimiento_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
+        <h4>Formulario_Seguimiento List</h4>
+        <div hx-get="{% url 'app_Formulario_Seguimiento_htmx_list' %}" hx-trigger="load">
+        </div>
+      </div>
+      <div class="col col-lg-6">
+        <h5>Add A PlanInversion</h5>
+        <div hx-get="{% url 'app_PlanInversion_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
+        <h4>PlanInversion List</h4>
+        <div hx-get="{% url 'app_PlanInversion_htmx_list' %}" hx-trigger="load">
+        </div>
+      </div>
+      <div class="col col-lg-6">
+        <h5>Add A Plan</h5>
+        <div hx-get="{% url 'app_Plan_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
+        <h4>Plan List</h4>
+        <div hx-get="{% url 'app_Plan_htmx_list' %}" hx-trigger="load">
+        </div>
+      </div>
+      <div class="col col-lg-6">
+        <h5>Add A PlanDesarrollo</h5>
+        <div hx-get="{% url 'app_PlanDesarrollo_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
+        <h4>PlanDesarrollo List</h4>
+        <div hx-get="{% url 'app_PlanDesarrollo_htmx_list' %}" hx-trigger="load">
+        </div>
+      </div>
+      <div class="col col-lg-6">
+        <h5>Add A PlanEstrategico</h5>
+        <div hx-get="{% url 'app_PlanEstrategico_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
+        <h4>PlanEstrategico List</h4>
+        <div hx-get="{% url 'app_PlanEstrategico_htmx_list' %}" hx-trigger="load">
+        </div>
+      </div>
+      <div class="col col-lg-6">
+        <h5>Add A PlanProceso</h5>
+        <div hx-get="{% url 'app_PlanProceso_htmx_create' %}" hx-trigger="load" hx-swap="outerHTML"></div>
+        <h4>PlanProceso List</h4>
+        <div hx-get="{% url 'app_PlanProceso_htmx_list' %}" hx-trigger="load">
         </div>
       </div>
     </div>

@@ -33,9 +33,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'django_htmx',
-    'Departamentos',
     'Formularios',
+    'Departamentos',
     'Seguimientos',
+    'Planes',
 ]
 
 
@@ -76,14 +77,10 @@ WSGI_APPLICATION = 'mipg.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-	'default': {
-		'ENGINE': 'django.db.backends.postgresql_psycopg2',
-		'NAME' : 'formularios_db',
-		'USER' : 'postgres',
-		'PASSWORD' : 'betrayed1.',
-		'HOST' : 'localhost', #si tienes otra dirección host debes remplazar esta
-		'PORT' : '5432', #si lo dejas vacío tomara el puerto por default
-	}
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 

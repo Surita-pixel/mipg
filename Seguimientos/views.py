@@ -4,32 +4,6 @@ from . import models
 from . import forms
 
 
-class Formulario_SeguimientoListView(generic.ListView):
-    model = models.Formulario_Seguimiento
-    form_class = forms.Formulario_SeguimientoForm
-
-
-class Formulario_SeguimientoCreateView(generic.CreateView):
-    model = models.Formulario_Seguimiento
-    form_class = forms.Formulario_SeguimientoForm
-
-
-class Formulario_SeguimientoDetailView(generic.DetailView):
-    model = models.Formulario_Seguimiento
-    form_class = forms.Formulario_SeguimientoForm
-
-
-class Formulario_SeguimientoUpdateView(generic.UpdateView):
-    model = models.Formulario_Seguimiento
-    form_class = forms.Formulario_SeguimientoForm
-    pk_url_kwarg = "pk"
-
-
-class Formulario_SeguimientoDeleteView(generic.DeleteView):
-    model = models.Formulario_Seguimiento
-    success_url = reverse_lazy("Seguimientos_Formulario_Seguimiento_list")
-
-
 class SeguimientoListView(generic.ListView):
     model = models.Seguimiento
     form_class = forms.SeguimientoForm
@@ -54,3 +28,29 @@ class SeguimientoUpdateView(generic.UpdateView):
 class SeguimientoDeleteView(generic.DeleteView):
     model = models.Seguimiento
     success_url = reverse_lazy("Seguimientos_Seguimiento_list")
+
+
+class Formulario_SeguimientoListView(generic.ListView):
+    model = models.Formulario_Seguimiento
+    form_class = forms.Formulario_SeguimientoForm
+
+
+class Formulario_SeguimientoCreateView(generic.CreateView):
+    model = models.Formulario_Seguimiento
+    form_class = forms.Formulario_SeguimientoForm
+
+
+class Formulario_SeguimientoDetailView(generic.DetailView):
+    model = models.Formulario_Seguimiento
+    form_class = forms.Formulario_SeguimientoForm
+
+
+class Formulario_SeguimientoUpdateView(generic.UpdateView):
+    model = models.Formulario_Seguimiento
+    form_class = forms.Formulario_SeguimientoForm
+    pk_url_kwarg = "pk"
+
+
+class Formulario_SeguimientoDeleteView(generic.DeleteView):
+    model = models.Formulario_Seguimiento
+    success_url = reverse_lazy("Seguimientos_Formulario_Seguimiento_list")

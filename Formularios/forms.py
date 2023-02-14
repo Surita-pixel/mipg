@@ -1,6 +1,6 @@
 from django import forms
-from Formularios.models import Respuesta
 from Formularios.models import Pregunta
+from Formularios.models import Formulario
 from . import models
 
 
@@ -9,22 +9,21 @@ class RespuestaForm(forms.ModelForm):
         model = models.Respuesta
         fields = [
             "respuesta",
-        ]
-
-
-class FormularioForm(forms.ModelForm):
-    
-    class Meta:
-        model = models.Formulario
-        fields = [
-            "nombre"
+            "pregunta",
         ]
 
     def __init__(self, *args, **kwargs):
-        super(FormularioForm, self).__init__(*args, **kwargs)
-        self.fields["respuestas_formulario"].queryset = Respuesta.objects.all()
-        self.fields["preguntas_formulario"].queryset = Pregunta.objects.all()
+        super(RespuestaForm, self).__init__(*args, **kwargs)
+        self.fields["pregunta"].queryset = Pregunta.objects.all()
 
+
+
+class FormularioForm(forms.ModelForm):
+    class Meta:
+        model = models.Formulario
+        fields = [
+            "nombre",
+        ]
 
 
 class PreguntaForm(forms.ModelForm):
@@ -32,4 +31,10 @@ class PreguntaForm(forms.ModelForm):
         model = models.Pregunta
         fields = [
             "pregunta",
+            "formulario",
         ]
+
+    def __init__(self, *args, **kwargs):
+        super(PreguntaForm, self).__init__(*args, **kwargs)
+        self.fields["formulario"].queryset = Formulario.objects.all()
+

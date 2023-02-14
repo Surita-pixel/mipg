@@ -4,11 +4,13 @@ from django.urls import reverse
 
 class Respuesta(models.Model):
 
-    # Fields
-    last_updated = models.DateTimeField(auto_now=True, editable=False)
-    created = models.DateTimeField(auto_now=True, editable=False)
+    # Relationships
     pregunta = models.ForeignKey("Formularios.Pregunta", on_delete=models.CASCADE)
-    respuesta = models.TextField(max_length=200)
+
+    # Fields
+    last_update = models.DateTimeField(auto_now_add=True, editable=False)
+    created = models.DateTimeField(auto_now_add=True, editable=False)
+    respuesta = models.TextField(max_length=100)
 
     class Meta:
         pass
@@ -32,25 +34,16 @@ class Respuesta(models.Model):
 
 class Formulario(models.Model):
 
-    # Relationships
-  
-
     # Fields
     nombre = models.TextField(max_length=100)
+    last_update = models.DateTimeField(auto_now_add=True, editable=False)
+    created = models.DateTimeField(auto_now_add=True, editable=False)
 
     class Meta:
         pass
 
     def __str__(self):
         return str(self.pk)
-
-    def get_preguntas(self):
-        """
-        Returns the direct children of this node.
-        If there are none, it returns an empty list.
-        """
-        children = list(Pregunta.objects.filter(formulario=self))
-        return  children
 
     def get_absolute_url(self):
         return reverse("Formularios_Formulario_detail", args=(self.pk,))
@@ -68,11 +61,13 @@ class Formulario(models.Model):
 
 class Pregunta(models.Model):
 
-    # Fields
-    pregunta = models.TextField(max_length=200)
-    last_updated = models.DateTimeField(auto_now=True, editable=False)
-    created = models.DateTimeField(auto_now=True, editable=False)
+    # Relationships
     formulario = models.ForeignKey("Formularios.Formulario", on_delete=models.CASCADE)
+
+    # Fields
+    created = models.DateTimeField(auto_now=True, editable=False)
+    last_update = models.DateTimeField(auto_now=True, editable=False)
+    pregunta = models.TextField(max_length=200)
 
     class Meta:
         pass

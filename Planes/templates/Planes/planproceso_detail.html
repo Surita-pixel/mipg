@@ -1,0 +1,21 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    
+<p>
+    <a class="btn btn-light" href="{% url 'Planes_PlanProceso_list' %}">
+    PlanProceso Listing
+    </a>
+</p>
+    
+<table class="table">
+    <tr><td>plan_proceso</td><td>{{ object.plan_proceso }}</td></tr>
+    <tr><td>created</td><td>{{ object.created }}</td></tr>
+    <tr><td>last_updated</td><td>{{ object.last_updated }}</td></tr>
+    <tr><td>seguimiento_proceso</td><td>{{ object.seguimiento_proceso }}</td></tr>
+    <tr><td>planes_de_inversion</td><td>{{ object.planes_de_inversion }}</td></tr>
+</table>
+<a class="btn btn-primary" href="{{object.get_update_url}}">Edit</a>
+
+{% endblock %}

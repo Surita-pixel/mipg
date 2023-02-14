@@ -14,12 +14,12 @@ class RespuestaAdminForm(forms.ModelForm):
 class RespuestaAdmin(admin.ModelAdmin):
     form = RespuestaAdminForm
     list_display = [
-        "last_updated",
+        "last_update",
         "created",
         "respuesta",
     ]
     readonly_fields = [
-        "last_updated",
+        "last_update",
         "created",
         "respuesta",
     ]
@@ -36,9 +36,13 @@ class FormularioAdmin(admin.ModelAdmin):
     form = FormularioAdminForm
     list_display = [
         "nombre",
+        "last_update",
+        "created",
     ]
     readonly_fields = [
         "nombre",
+        "last_update",
+        "created",
     ]
 
 
@@ -52,14 +56,14 @@ class PreguntaAdminForm(forms.ModelForm):
 class PreguntaAdmin(admin.ModelAdmin):
     form = PreguntaAdminForm
     list_display = [
-        "pregunta",
-        "last_updated",
         "created",
+        "last_update",
+        "pregunta",
     ]
     readonly_fields = [
-        "pregunta",
-        "last_updated",
         "created",
+        "last_update",
+        "pregunta",
     ]
 
 

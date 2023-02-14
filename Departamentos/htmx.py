@@ -9,58 +9,6 @@ from . import models
 from . import forms
 
 
-class HTMXPlanListView(generic.ListView):
-    model = models.Plan
-    form_class = forms.PlanForm
-    
-    def get(self, request, *args, **kwargs):
-        super().get(request, *args, **kwargs)
-        context = {
-            "model_id": self.model._meta.verbose_name_raw,
-            "objects": self.get_queryset()
-        }
-        return TemplateResponse(request,'htmx/list.html', context)
-
-
-class HTMXPlanCreateView(generic.CreateView):
-    model = models.Plan
-    form_class = forms.PlanForm
-    
-    def get(self, request, *args, **kwargs):
-        super().get(request, *args, **kwargs)
-        context = {
-            "create_url": self.model.get_htmx_create_url(),
-            "form": self.get_form()
-        }
-        return TemplateResponse(request, 'htmx/form.html', context)
-
-    def form_valid(self, form):
-        super().form_valid(form)
-        context = {
-            "model_id": self.model._meta.verbose_name_raw,
-            "object": self.object,
-            "form": form
-        }
-        return TemplateResponse(self.request, 'htmx/create.html', context)
-
-    def form_invalid(self, form):
-        super().form_invalid(form)
-        context = {
-            "create_url": self.model.get_htmx_create_url(),
-            "form": self.get_form()
-        }
-        return TemplateResponse(self.request, 'htmx/form.html', context)
-
-
-class HTMXPlanDeleteView(generic.DeleteView):
-    model = models.Plan
-    success_url = reverse_lazy("app_Plan_htmx_list")
-    
-    def form_valid(self, form):
-        super().form_valid(form)
-        return HttpResponse()
-
-
 class HTMXOficinaListView(generic.ListView):
     model = models.Oficina
     form_class = forms.OficinaForm

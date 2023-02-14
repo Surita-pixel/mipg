@@ -1,0 +1,21 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    
+<p>
+    <a class="btn btn-light" href="{% url 'Planes_PlanEstrategico_list' %}">
+    PlanEstrategico Listing
+    </a>
+</p>
+    
+<table class="table">
+    <tr><td>last_updated</td><td>{{ object.last_updated }}</td></tr>
+    <tr><td>plan_estrategico</td><td>{{ object.plan_estrategico }}</td></tr>
+    <tr><td>created</td><td>{{ object.created }}</td></tr>
+    <tr><td>planes_inversion</td><td>{{ object.planes_inversion }}</td></tr>
+    <tr><td>seguimiento_plan_estrategico</td><td>{{ object.seguimiento_plan_estrategico }}</td></tr>
+</table>
+<a class="btn btn-primary" href="{{object.get_update_url}}">Edit</a>
+
+{% endblock %}
