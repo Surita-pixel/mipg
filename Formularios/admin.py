@@ -24,7 +24,7 @@ class RespuestaAdmin(admin.ModelAdmin):
         "respuesta",
     ]
 
-class PreguntaInline(admin.TabularInline):
+class PreguntaInline(admin.StackedInline):
     model = models.Pregunta
 
 class FormularioAdminForm(forms.ModelForm):
