@@ -21,8 +21,9 @@ class RespuestaAdmin(admin.ModelAdmin):
     readonly_fields = [
         "last_update",
         "created",
-        "respuesta",
     ]
+class RespuestasInLine(admin.StackedInline):
+    model = models.Respuesta
 
 class PreguntaInline(admin.StackedInline):
     model = models.Pregunta
@@ -44,7 +45,6 @@ class FormularioAdmin(admin.ModelAdmin):
     ]
 
     readonly_fields = [
-        "nombre",
         "last_update",
         "created",
     ]
@@ -59,6 +59,7 @@ class PreguntaAdminForm(forms.ModelForm):
 
 class PreguntaAdmin(admin.ModelAdmin):
     form = PreguntaAdminForm
+    inlines = [RespuestasInLine]
     list_display = [
         "created",
         "last_update",
@@ -67,7 +68,6 @@ class PreguntaAdmin(admin.ModelAdmin):
     readonly_fields = [
         "created",
         "last_update",
-        "pregunta",
     ]
 
 
