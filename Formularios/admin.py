@@ -24,6 +24,8 @@ class RespuestaAdmin(admin.ModelAdmin):
         "respuesta",
     ]
 
+class PreguntaInline(admin.TabularInline):
+    model = models.Pregunta
 
 class FormularioAdminForm(forms.ModelForm):
 
@@ -34,11 +36,13 @@ class FormularioAdminForm(forms.ModelForm):
 
 class FormularioAdmin(admin.ModelAdmin):
     form = FormularioAdminForm
+    inlines = [PreguntaInline]
     list_display = [
         "nombre",
         "last_update",
         "created",
     ]
+
     readonly_fields = [
         "nombre",
         "last_update",

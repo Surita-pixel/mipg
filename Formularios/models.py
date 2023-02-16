@@ -35,7 +35,7 @@ class Respuesta(models.Model):
 class Formulario(models.Model):
 
     # Fields
-    nombre = models.TextField(max_length=100)
+    nombre = models.CharField(max_length=100, editable=True)
     last_update = models.DateTimeField(auto_now_add=True, editable=False)
     created = models.DateTimeField(auto_now_add=True, editable=False)
 
