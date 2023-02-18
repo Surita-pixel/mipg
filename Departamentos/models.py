@@ -5,8 +5,8 @@ from django.urls import reverse
 class Oficina(models.Model):
 
     # Fields
-    last_updated = models.DateTimeField(auto_now=True, editable=False)
     nombre_oficina = models.TextField(max_length=200)
+    last_updated = models.DateTimeField(auto_now=True, editable=False)
     created = models.DateTimeField(auto_now_add=True, editable=False)
 
     class Meta:

@@ -14,13 +14,13 @@ class OficinaAdminForm(forms.ModelForm):
 class OficinaAdmin(admin.ModelAdmin):
     form = OficinaAdminForm
     list_display = [
-        "last_updated",
         "nombre_oficina",
+        "last_updated",
         "created",
     ]
     readonly_fields = [
-        "last_updated",
         "nombre_oficina",
+        "last_updated",
         "created",
     ]
 

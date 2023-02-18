@@ -4,20 +4,14 @@
 {% block content %}
     
 <p>
-    <a class="btn btn-light" href="{% url 'Departamentos_Oficina_list' %}">
-    Oficina Listing
+    <a class="btn btn-light" href="{% url 'Planes_TipoPlan_list' %}">
+    TipoPlan Listing
     </a>
 </p>
     
 <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
   {{form.errors}}
-  <div class="form-group row">
-      <label class="col-sm-2 col-form-label" for="nombre_oficina">nombre_oficina: </label>
-      <input class="form-control col-sm-10"'
-         id="nombre_oficina" type="text"
-         name="nombre_oficina" value="{{ object.nombre_oficina }}">
-  </div>
   <div class="form-group row">
       <label class="col-sm-2 col-form-label" for="last_updated">last_updated: </label>
       <input class="form-control col-sm-10"
@@ -29,6 +23,20 @@
       <input class="form-control col-sm-10"
          id="created" type="datetime-local"
          name="created" value="{{ object.created }}" disabled>
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="nombre_tipo_plan">nombre_tipo_plan: </label>
+      <input class="form-control col-sm-10"'
+         id="nombre_tipo_plan" type="text"
+         name="nombre_tipo_plan" value="{{ object.nombre_tipo_plan }}">
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="plan_proceso">plan_proceso: </label>
+      {{ form.plan_proceso }}
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="planes_especificos">planes_especificos: </label>
+      {{ form.planes_especificos }}
   </div>
   <input type="submit" value="Save" class="btn btn-primary">
 </form>

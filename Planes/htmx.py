@@ -9,6 +9,110 @@ from . import models
 from . import forms
 
 
+class HTMXPlanEstrategicoListView(generic.ListView):
+    model = models.PlanEstrategico
+    form_class = forms.PlanEstrategicoForm
+    
+    def get(self, request, *args, **kwargs):
+        super().get(request, *args, **kwargs)
+        context = {
+            "model_id": self.model._meta.verbose_name_raw,
+            "objects": self.get_queryset()
+        }
+        return TemplateResponse(request,'htmx/list.html', context)
+
+
+class HTMXPlanEstrategicoCreateView(generic.CreateView):
+    model = models.PlanEstrategico
+    form_class = forms.PlanEstrategicoForm
+    
+    def get(self, request, *args, **kwargs):
+        super().get(request, *args, **kwargs)
+        context = {
+            "create_url": self.model.get_htmx_create_url(),
+            "form": self.get_form()
+        }
+        return TemplateResponse(request, 'htmx/form.html', context)
+
+    def form_valid(self, form):
+        super().form_valid(form)
+        context = {
+            "model_id": self.model._meta.verbose_name_raw,
+            "object": self.object,
+            "form": form
+        }
+        return TemplateResponse(self.request, 'htmx/create.html', context)
+
+    def form_invalid(self, form):
+        super().form_invalid(form)
+        context = {
+            "create_url": self.model.get_htmx_create_url(),
+            "form": self.get_form()
+        }
+        return TemplateResponse(self.request, 'htmx/form.html', context)
+
+
+class HTMXPlanEstrategicoDeleteView(generic.DeleteView):
+    model = models.PlanEstrategico
+    success_url = reverse_lazy("app_PlanEstrategico_htmx_list")
+    
+    def form_valid(self, form):
+        super().form_valid(form)
+        return HttpResponse()
+
+
+class HTMXTipoPlanListView(generic.ListView):
+    model = models.TipoPlan
+    form_class = forms.TipoPlanForm
+    
+    def get(self, request, *args, **kwargs):
+        super().get(request, *args, **kwargs)
+        context = {
+            "model_id": self.model._meta.verbose_name_raw,
+            "objects": self.get_queryset()
+        }
+        return TemplateResponse(request,'htmx/list.html', context)
+
+
+class HTMXTipoPlanCreateView(generic.CreateView):
+    model = models.TipoPlan
+    form_class = forms.TipoPlanForm
+    
+    def get(self, request, *args, **kwargs):
+        super().get(request, *args, **kwargs)
+        context = {
+            "create_url": self.model.get_htmx_create_url(),
+            "form": self.get_form()
+        }
+        return TemplateResponse(request, 'htmx/form.html', context)
+
+    def form_valid(self, form):
+        super().form_valid(form)
+        context = {
+            "model_id": self.model._meta.verbose_name_raw,
+            "object": self.object,
+            "form": form
+        }
+        return TemplateResponse(self.request, 'htmx/create.html', context)
+
+    def form_invalid(self, form):
+        super().form_invalid(form)
+        context = {
+            "create_url": self.model.get_htmx_create_url(),
+            "form": self.get_form()
+        }
+        return TemplateResponse(self.request, 'htmx/form.html', context)
+
+
+class HTMXTipoPlanDeleteView(generic.DeleteView):
+    model = models.TipoPlan
+    success_url = reverse_lazy("app_TipoPlan_htmx_list")
+    
+    def form_valid(self, form):
+        super().form_valid(form)
+        return HttpResponse()
+
+
 class HTMXPlanInversionListView(generic.ListView):
     model = models.PlanInversion
     form_class = forms.PlanInversionForm
@@ -55,6 +159,58 @@ class HTMXPlanInversionCreateView(generic.CreateView):
 class HTMXPlanInversionDeleteView(generic.DeleteView):
     model = models.PlanInversion
     success_url = reverse_lazy("app_PlanInversion_htmx_list")
+    
+    def form_valid(self, form):
+        super().form_valid(form)
+        return HttpResponse()
+
+
+class HTMXPlanProcesoListView(generic.ListView):
+    model = models.PlanProceso
+    form_class = forms.PlanProcesoForm
+    
+    def get(self, request, *args, **kwargs):
+        super().get(request, *args, **kwargs)
+        context = {
+            "model_id": self.model._meta.verbose_name_raw,
+            "objects": self.get_queryset()
+        }
+        return TemplateResponse(request,'htmx/list.html', context)
+
+
+class HTMXPlanProcesoCreateView(generic.CreateView):
+    model = models.PlanProceso
+    form_class = forms.PlanProcesoForm
+    
+    def get(self, request, *args, **kwargs):
+        super().get(request, *args, **kwargs)
+        context = {
+            "create_url": self.model.get_htmx_create_url(),
+            "form": self.get_form()
+        }
+        return TemplateResponse(request, 'htmx/form.html', context)
+
+    def form_valid(self, form):
+        super().form_valid(form)
+        context = {
+            "model_id": self.model._meta.verbose_name_raw,
+            "object": self.object,
+            "form": form
+        }
+        return TemplateResponse(self.request, 'htmx/create.html', context)
+
+    def form_invalid(self, form):
+        super().form_invalid(form)
+        context = {
+            "create_url": self.model.get_htmx_create_url(),
+            "form": self.get_form()
+        }
+        return TemplateResponse(self.request, 'htmx/form.html', context)
+
+
+class HTMXPlanProcesoDeleteView(generic.DeleteView):
+    model = models.PlanProceso
+    success_url = reverse_lazy("app_PlanProceso_htmx_list")
     
     def form_valid(self, form):
         super().form_valid(form)
@@ -165,9 +321,9 @@ class HTMXPlanDesarrolloDeleteView(generic.DeleteView):
         return HttpResponse()
 
 
-class HTMXPlanEstrategicoListView(generic.ListView):
-    model = models.PlanEstrategico
-    form_class = forms.PlanEstrategicoForm
+class HTMXTipoPlanEspecificoListView(generic.ListView):
+    model = models.TipoPlanEspecifico
+    form_class = forms.TipoPlanEspecificoForm
     
     def get(self, request, *args, **kwargs):
         super().get(request, *args, **kwargs)
@@ -178,9 +334,9 @@ class HTMXPlanEstrategicoListView(generic.ListView):
         return TemplateResponse(request,'htmx/list.html', context)
 
 
-class HTMXPlanEstrategicoCreateView(generic.CreateView):
-    model = models.PlanEstrategico
-    form_class = forms.PlanEstrategicoForm
+class HTMXTipoPlanEspecificoCreateView(generic.CreateView):
+    model = models.TipoPlanEspecifico
+    form_class = forms.TipoPlanEspecificoForm
     
     def get(self, request, *args, **kwargs):
         super().get(request, *args, **kwargs)
@@ -208,61 +364,9 @@ class HTMXPlanEstrategicoCreateView(generic.CreateView):
         return TemplateResponse(self.request, 'htmx/form.html', context)
 
 
-class HTMXPlanEstrategicoDeleteView(generic.DeleteView):
-    model = models.PlanEstrategico
-    success_url = reverse_lazy("app_PlanEstrategico_htmx_list")
-    
-    def form_valid(self, form):
-        super().form_valid(form)
-        return HttpResponse()
-
-
-class HTMXPlanProcesoListView(generic.ListView):
-    model = models.PlanProceso
-    form_class = forms.PlanProcesoForm
-    
-    def get(self, request, *args, **kwargs):
-        super().get(request, *args, **kwargs)
-        context = {
-            "model_id": self.model._meta.verbose_name_raw,
-            "objects": self.get_queryset()
-        }
-        return TemplateResponse(request,'htmx/list.html', context)
-
-
-class HTMXPlanProcesoCreateView(generic.CreateView):
-    model = models.PlanProceso
-    form_class = forms.PlanProcesoForm
-    
-    def get(self, request, *args, **kwargs):
-        super().get(request, *args, **kwargs)
-        context = {
-            "create_url": self.model.get_htmx_create_url(),
-            "form": self.get_form()
-        }
-        return TemplateResponse(request, 'htmx/form.html', context)
-
-    def form_valid(self, form):
-        super().form_valid(form)
-        context = {
-            "model_id": self.model._meta.verbose_name_raw,
-            "object": self.object,
-            "form": form
-        }
-        return TemplateResponse(self.request, 'htmx/create.html', context)
-
-    def form_invalid(self, form):
-        super().form_invalid(form)
-        context = {
-            "create_url": self.model.get_htmx_create_url(),
-            "form": self.get_form()
-        }
-        return TemplateResponse(self.request, 'htmx/form.html', context)
-
-
-class HTMXPlanProcesoDeleteView(generic.DeleteView):
-    model = models.PlanProceso
-    success_url = reverse_lazy("app_PlanProceso_htmx_list")
+class HTMXTipoPlanEspecificoDeleteView(generic.DeleteView):
+    model = models.TipoPlanEspecifico
+    success_url = reverse_lazy("app_TipoPlanEspecifico_htmx_list")
     
     def form_valid(self, form):
         super().form_valid(form)

@@ -48,43 +48,6 @@ def tests_Respuesta_update_view(client):
     assert response.status_code == 302
 
 
-def tests_Formulario_list_view(client):
-    instance1 = test_helpers.create_Formularios_Formulario()
-    instance2 = test_helpers.create_Formularios_Formulario()
-    url = reverse("Formularios_Formulario_list")
-    response = client.get(url)
-    assert response.status_code == 200
-    assert str(instance1) in response.content.decode("utf-8")
-    assert str(instance2) in response.content.decode("utf-8")
-
-
-def tests_Formulario_create_view(client):
-    url = reverse("Formularios_Formulario_create")
-    data = {
-        "nombre": "text",
-    }
-    response = client.post(url, data)
-    assert response.status_code == 302
-
-
-def tests_Formulario_detail_view(client):
-    instance = test_helpers.create_Formularios_Formulario()
-    url = reverse("Formularios_Formulario_detail", args=[instance.pk, ])
-    response = client.get(url)
-    assert response.status_code == 200
-    assert str(instance) in response.content.decode("utf-8")
-
-
-def tests_Formulario_update_view(client):
-    instance = test_helpers.create_Formularios_Formulario()
-    url = reverse("Formularios_Formulario_update", args=[instance.pk, ])
-    data = {
-        "nombre": "text",
-    }
-    response = client.post(url, data)
-    assert response.status_code == 302
-
-
 def tests_Pregunta_list_view(client):
     instance1 = test_helpers.create_Formularios_Pregunta()
     instance2 = test_helpers.create_Formularios_Pregunta()
@@ -121,6 +84,43 @@ def tests_Pregunta_update_view(client):
     data = {
         "pregunta": "text",
         "formulario": formulario.pk,
+    }
+    response = client.post(url, data)
+    assert response.status_code == 302
+
+
+def tests_Formulario_list_view(client):
+    instance1 = test_helpers.create_Formularios_Formulario()
+    instance2 = test_helpers.create_Formularios_Formulario()
+    url = reverse("Formularios_Formulario_list")
+    response = client.get(url)
+    assert response.status_code == 200
+    assert str(instance1) in response.content.decode("utf-8")
+    assert str(instance2) in response.content.decode("utf-8")
+
+
+def tests_Formulario_create_view(client):
+    url = reverse("Formularios_Formulario_create")
+    data = {
+        "nombre": "text",
+    }
+    response = client.post(url, data)
+    assert response.status_code == 302
+
+
+def tests_Formulario_detail_view(client):
+    instance = test_helpers.create_Formularios_Formulario()
+    url = reverse("Formularios_Formulario_detail", args=[instance.pk, ])
+    response = client.get(url)
+    assert response.status_code == 200
+    assert str(instance) in response.content.decode("utf-8")
+
+
+def tests_Formulario_update_view(client):
+    instance = test_helpers.create_Formularios_Formulario()
+    url = reverse("Formularios_Formulario_update", args=[instance.pk, ])
+    data = {
+        "nombre": "text",
     }
     response = client.post(url, data)
     assert response.status_code == 302

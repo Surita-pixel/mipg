@@ -10,18 +10,6 @@ class SeguimientoSerializer(serializers.ModelSerializer):
         fields = [
             "created",
             "last_updated",
-            "seguimiento_formulario_pivot",
+            "seguimiento_formulario",
             "oficina",
-        ]
-
-class Formulario_SeguimientoSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = models.Formulario_Seguimiento
-        fields = [
-            "created",
-            "last_updated",
-            "formulario_seguimiento",
-            "Formulario_Seguimiento",
-            "Formulario_Seguimiento_Plan",
         ]

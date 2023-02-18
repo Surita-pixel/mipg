@@ -1,20 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="m-2"><h4>Formularios</h4></div>
-<div class="m-2"><a class="btn btn-light" href="{% url 'Formularios_Respuesta_list' %}">Respuesta Listing</a></div>
-<div class="m-2"><a class="btn btn-light" href="{% url 'Formularios_Formulario_list' %}">Formulario Listing</a></div>
-<div class="m-2"><a class="btn btn-light" href="{% url 'Formularios_Pregunta_list' %}">Pregunta Listing</a></div>
 <div class="m-2"><h4>Departamentos</h4></div>
 <div class="m-2"><a class="btn btn-light" href="{% url 'Departamentos_Oficina_list' %}">Oficina Listing</a></div>
-<div class="m-2"><h4>Seguimientos</h4></div>
-<div class="m-2"><a class="btn btn-light" href="{% url 'Seguimientos_Seguimiento_list' %}">Seguimiento Listing</a></div>
-<div class="m-2"><a class="btn btn-light" href="{% url 'Seguimientos_Formulario_Seguimiento_list' %}">Formulario_Seguimiento Listing</a></div>
 <div class="m-2"><h4>Planes</h4></div>
+<div class="m-2"><a class="btn btn-light" href="{% url 'Planes_PlanEstrategico_list' %}">PlanEstrategico Listing</a></div>
+<div class="m-2"><a class="btn btn-light" href="{% url 'Planes_TipoPlan_list' %}">TipoPlan Listing</a></div>
 <div class="m-2"><a class="btn btn-light" href="{% url 'Planes_PlanInversion_list' %}">PlanInversion Listing</a></div>
+<div class="m-2"><a class="btn btn-light" href="{% url 'Planes_PlanProceso_list' %}">PlanProceso Listing</a></div>
 <div class="m-2"><a class="btn btn-light" href="{% url 'Planes_Plan_list' %}">Plan Listing</a></div>
 <div class="m-2"><a class="btn btn-light" href="{% url 'Planes_PlanDesarrollo_list' %}">PlanDesarrollo Listing</a></div>
-<div class="m-2"><a class="btn btn-light" href="{% url 'Planes_PlanEstrategico_list' %}">PlanEstrategico Listing</a></div>
-<div class="m-2"><a class="btn btn-light" href="{% url 'Planes_PlanProceso_list' %}">PlanProceso Listing</a></div>
+<div class="m-2"><a class="btn btn-light" href="{% url 'Planes_TipoPlanEspecifico_list' %}">TipoPlanEspecifico Listing</a></div>
+<div class="m-2"><h4>Formularios</h4></div>
+<div class="m-2"><a class="btn btn-light" href="{% url 'Formularios_Respuesta_list' %}">Respuesta Listing</a></div>
+<div class="m-2"><a class="btn btn-light" href="{% url 'Formularios_Pregunta_list' %}">Pregunta Listing</a></div>
+<div class="m-2"><a class="btn btn-light" href="{% url 'Formularios_Formulario_list' %}">Formulario Listing</a></div>
+<div class="m-2"><h4>Seguimientos</h4></div>
+<div class="m-2"><a class="btn btn-light" href="{% url 'Seguimientos_Seguimiento_list' %}">Seguimiento Listing</a></div>
 <div class='container'>
 <div class='card'>
 <div class='card-body'>

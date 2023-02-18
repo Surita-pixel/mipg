@@ -8,7 +8,7 @@ class OficinaSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Oficina
         fields = [
-            "last_updated",
             "nombre_oficina",
+            "last_updated",
             "created",
         ]

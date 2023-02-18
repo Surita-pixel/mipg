@@ -18,14 +18,6 @@ class RespuestaForm(forms.ModelForm):
 
 
 
-class FormularioForm(forms.ModelForm):
-    class Meta:
-        model = models.Formulario
-        fields = [
-            "nombre",
-        ]
-
-
 class PreguntaForm(forms.ModelForm):
     class Meta:
         model = models.Pregunta
@@ -38,3 +30,11 @@ class PreguntaForm(forms.ModelForm):
         super(PreguntaForm, self).__init__(*args, **kwargs)
         self.fields["formulario"].queryset = Formulario.objects.all()
 
+
+
+class FormularioForm(forms.ModelForm):
+    class Meta:
+        model = models.Formulario
+        fields = [
+            "nombre",
+        ]

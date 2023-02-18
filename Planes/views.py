@@ -4,6 +4,58 @@ from . import models
 from . import forms
 
 
+class PlanEstrategicoListView(generic.ListView):
+    model = models.PlanEstrategico
+    form_class = forms.PlanEstrategicoForm
+
+
+class PlanEstrategicoCreateView(generic.CreateView):
+    model = models.PlanEstrategico
+    form_class = forms.PlanEstrategicoForm
+
+
+class PlanEstrategicoDetailView(generic.DetailView):
+    model = models.PlanEstrategico
+    form_class = forms.PlanEstrategicoForm
+
+
+class PlanEstrategicoUpdateView(generic.UpdateView):
+    model = models.PlanEstrategico
+    form_class = forms.PlanEstrategicoForm
+    pk_url_kwarg = "pk"
+
+
+class PlanEstrategicoDeleteView(generic.DeleteView):
+    model = models.PlanEstrategico
+    success_url = reverse_lazy("Planes_PlanEstrategico_list")
+
+
+class TipoPlanListView(generic.ListView):
+    model = models.TipoPlan
+    form_class = forms.TipoPlanForm
+
+
+class TipoPlanCreateView(generic.CreateView):
+    model = models.TipoPlan
+    form_class = forms.TipoPlanForm
+
+
+class TipoPlanDetailView(generic.DetailView):
+    model = models.TipoPlan
+    form_class = forms.TipoPlanForm
+
+
+class TipoPlanUpdateView(generic.UpdateView):
+    model = models.TipoPlan
+    form_class = forms.TipoPlanForm
+    pk_url_kwarg = "pk"
+
+
+class TipoPlanDeleteView(generic.DeleteView):
+    model = models.TipoPlan
+    success_url = reverse_lazy("Planes_TipoPlan_list")
+
+
 class PlanInversionListView(generic.ListView):
     model = models.PlanInversion
     form_class = forms.PlanInversionForm
@@ -28,6 +80,32 @@ class PlanInversionUpdateView(generic.UpdateView):
 class PlanInversionDeleteView(generic.DeleteView):
     model = models.PlanInversion
     success_url = reverse_lazy("Planes_PlanInversion_list")
+
+
+class PlanProcesoListView(generic.ListView):
+    model = models.PlanProceso
+    form_class = forms.PlanProcesoForm
+
+
+class PlanProcesoCreateView(generic.CreateView):
+    model = models.PlanProceso
+    form_class = forms.PlanProcesoForm
+
+
+class PlanProcesoDetailView(generic.DetailView):
+    model = models.PlanProceso
+    form_class = forms.PlanProcesoForm
+
+
+class PlanProcesoUpdateView(generic.UpdateView):
+    model = models.PlanProceso
+    form_class = forms.PlanProcesoForm
+    pk_url_kwarg = "pk"
+
+
+class PlanProcesoDeleteView(generic.DeleteView):
+    model = models.PlanProceso
+    success_url = reverse_lazy("Planes_PlanProceso_list")
 
 
 class PlanListView(generic.ListView):
@@ -82,53 +160,27 @@ class PlanDesarrolloDeleteView(generic.DeleteView):
     success_url = reverse_lazy("Planes_PlanDesarrollo_list")
 
 
-class PlanEstrategicoListView(generic.ListView):
-    model = models.PlanEstrategico
-    form_class = forms.PlanEstrategicoForm
+class TipoPlanEspecificoListView(generic.ListView):
+    model = models.TipoPlanEspecifico
+    form_class = forms.TipoPlanEspecificoForm
 
 
-class PlanEstrategicoCreateView(generic.CreateView):
-    model = models.PlanEstrategico
-    form_class = forms.PlanEstrategicoForm
+class TipoPlanEspecificoCreateView(generic.CreateView):
+    model = models.TipoPlanEspecifico
+    form_class = forms.TipoPlanEspecificoForm
 
 
-class PlanEstrategicoDetailView(generic.DetailView):
-    model = models.PlanEstrategico
-    form_class = forms.PlanEstrategicoForm
+class TipoPlanEspecificoDetailView(generic.DetailView):
+    model = models.TipoPlanEspecifico
+    form_class = forms.TipoPlanEspecificoForm
 
 
-class PlanEstrategicoUpdateView(generic.UpdateView):
-    model = models.PlanEstrategico
-    form_class = forms.PlanEstrategicoForm
+class TipoPlanEspecificoUpdateView(generic.UpdateView):
+    model = models.TipoPlanEspecifico
+    form_class = forms.TipoPlanEspecificoForm
     pk_url_kwarg = "pk"
 
 
-class PlanEstrategicoDeleteView(generic.DeleteView):
-    model = models.PlanEstrategico
-    success_url = reverse_lazy("Planes_PlanEstrategico_list")
-
-
-class PlanProcesoListView(generic.ListView):
-    model = models.PlanProceso
-    form_class = forms.PlanProcesoForm
-
-
-class PlanProcesoCreateView(generic.CreateView):
-    model = models.PlanProceso
-    form_class = forms.PlanProcesoForm
-
-
-class PlanProcesoDetailView(generic.DetailView):
-    model = models.PlanProceso
-    form_class = forms.PlanProcesoForm
-
-
-class PlanProcesoUpdateView(generic.UpdateView):
-    model = models.PlanProceso
-    form_class = forms.PlanProcesoForm
-    pk_url_kwarg = "pk"
-
-
-class PlanProcesoDeleteView(generic.DeleteView):
-    model = models.PlanProceso
-    success_url = reverse_lazy("Planes_PlanProceso_list")
+class TipoPlanEspecificoDeleteView(generic.DeleteView):
+    model = models.TipoPlanEspecifico
+    success_url = reverse_lazy("Planes_TipoPlanEspecifico_list")

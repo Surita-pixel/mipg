@@ -13,12 +13,6 @@
   {% csrf_token %}
   {{form.errors}}
   <div class="form-group row">
-      <label class="col-sm-2 col-form-label" for="last_update">last_update: </label>
-      <input class="form-control col-sm-10"
-         id="last_update" type="datetime-local"
-         name="last_update" value="{{ object.last_update }}" disabled>
-  </div>
-  <div class="form-group row">
       <label class="col-sm-2 col-form-label" for="created">created: </label>
       <input class="form-control col-sm-10"
          id="created" type="datetime-local"
@@ -29,6 +23,12 @@
       <input class="form-control col-sm-10"'
          id="respuesta" type="text"
          name="respuesta" value="{{ object.respuesta }}">
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="last_update">last_update: </label>
+      <input class="form-control col-sm-10"
+         id="last_update" type="datetime-local"
+         name="last_update" value="{{ object.last_update }}" disabled>
   </div>
   <div class="form-group row">
       <label class="col-sm-2 col-form-label" for="pregunta">pregunta: </label>

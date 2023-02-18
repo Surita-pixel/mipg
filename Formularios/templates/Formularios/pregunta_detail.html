@@ -10,9 +10,9 @@
 </p>
     
 <table class="table">
+    <tr><td>pregunta</td><td>{{ object.pregunta }}</td></tr>
     <tr><td>created</td><td>{{ object.created }}</td></tr>
     <tr><td>last_update</td><td>{{ object.last_update }}</td></tr>
-    <tr><td>pregunta</td><td>{{ object.pregunta }}</td></tr>
     <tr><td>formulario</td><td>{{ object.formulario }}</td></tr>
 </table>
 <a class="btn btn-primary" href="{{object.get_update_url}}">Edit</a>

@@ -8,20 +8,10 @@ class RespuestaSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Respuesta
         fields = [
-            "last_update",
             "created",
             "respuesta",
-            "pregunta",
-        ]
-
-class FormularioSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = models.Formulario
-        fields = [
-            "nombre",
             "last_update",
-            "created",
+            "pregunta",
         ]
 
 class PreguntaSerializer(serializers.ModelSerializer):
@@ -29,8 +19,18 @@ class PreguntaSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Pregunta
         fields = [
+            "pregunta",
             "created",
             "last_update",
-            "pregunta",
             "formulario",
+        ]
+
+class FormularioSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.Formulario
+        fields = [
+            "created",
+            "last_update",
+            "nombre",
         ]

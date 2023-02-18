@@ -4,11 +4,35 @@ from . import serializers
 from . import models
 
 
+class PlanEstrategicoViewSet(viewsets.ModelViewSet):
+    """ViewSet for the PlanEstrategico class"""
+
+    queryset = models.PlanEstrategico.objects.all()
+    serializer_class = serializers.PlanEstrategicoSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class TipoPlanViewSet(viewsets.ModelViewSet):
+    """ViewSet for the TipoPlan class"""
+
+    queryset = models.TipoPlan.objects.all()
+    serializer_class = serializers.TipoPlanSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
 class PlanInversionViewSet(viewsets.ModelViewSet):
     """ViewSet for the PlanInversion class"""
 
     queryset = models.PlanInversion.objects.all()
     serializer_class = serializers.PlanInversionSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class PlanProcesoViewSet(viewsets.ModelViewSet):
+    """ViewSet for the PlanProceso class"""
+
+    queryset = models.PlanProceso.objects.all()
+    serializer_class = serializers.PlanProcesoSerializer
     permission_classes = [permissions.IsAuthenticated]
 
 
@@ -28,17 +52,9 @@ class PlanDesarrolloViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 
-class PlanEstrategicoViewSet(viewsets.ModelViewSet):
-    """ViewSet for the PlanEstrategico class"""
+class TipoPlanEspecificoViewSet(viewsets.ModelViewSet):
+    """ViewSet for the TipoPlanEspecifico class"""
 
-    queryset = models.PlanEstrategico.objects.all()
-    serializer_class = serializers.PlanEstrategicoSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
-
-class PlanProcesoViewSet(viewsets.ModelViewSet):
-    """ViewSet for the PlanProceso class"""
-
-    queryset = models.PlanProceso.objects.all()
-    serializer_class = serializers.PlanProcesoSerializer
+    queryset = models.TipoPlanEspecifico.objects.all()
+    serializer_class = serializers.TipoPlanEspecificoSerializer
     permission_classes = [permissions.IsAuthenticated]

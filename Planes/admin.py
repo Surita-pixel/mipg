@@ -4,6 +4,48 @@ from django import forms
 from . import models
 
 
+class PlanEstrategicoAdminForm(forms.ModelForm):
+
+    class Meta:
+        model = models.PlanEstrategico
+        fields = "__all__"
+
+
+class PlanEstrategicoAdmin(admin.ModelAdmin):
+    form = PlanEstrategicoAdminForm
+    list_display = [
+        "last_updated",
+        "plan_estrategico",
+        "created",
+    ]
+    readonly_fields = [
+        "last_updated",
+        "plan_estrategico",
+        "created",
+    ]
+
+
+class TipoPlanAdminForm(forms.ModelForm):
+
+    class Meta:
+        model = models.TipoPlan
+        fields = "__all__"
+
+
+class TipoPlanAdmin(admin.ModelAdmin):
+    form = TipoPlanAdminForm
+    list_display = [
+        "last_updated",
+        "created",
+        "nombre_tipo_plan",
+    ]
+    readonly_fields = [
+        "last_updated",
+        "created",
+        "nombre_tipo_plan",
+    ]
+
+
 class PlanInversionAdminForm(forms.ModelForm):
 
     class Meta:
@@ -22,6 +64,29 @@ class PlanInversionAdmin(admin.ModelAdmin):
         "created",
     ]
 
+class TipoPlanInLine(admin.TabularInline):
+    model = models.TipoPlan
+
+class PlanProcesoAdminForm(forms.ModelForm):
+
+    class Meta:
+        model = models.PlanProceso
+        fields = "__all__"
+
+
+class PlanProcesoAdmin(admin.ModelAdmin):
+    form = PlanProcesoAdminForm
+    inlines = [TipoPlanInLine]
+    list_display = [
+        "nombre_plan_proceso",
+        "created",
+        "last_updated",
+    ]
+    readonly_fields = [
+        "created",
+        "last_updated",
+    ]
+
 
 class PlanAdminForm(forms.ModelForm):
 
@@ -34,13 +99,13 @@ class PlanAdmin(admin.ModelAdmin):
     form = PlanAdminForm
     list_display = [
         "last_updated",
-        "plan",
         "created",
+        "plan",
     ]
     readonly_fields = [
         "last_updated",
-        "plan",
         "created",
+        "plan",
     ]
 
 
@@ -65,50 +130,31 @@ class PlanDesarrolloAdmin(admin.ModelAdmin):
     ]
 
 
-class PlanEstrategicoAdminForm(forms.ModelForm):
+class TipoPlanEspecificoAdminForm(forms.ModelForm):
 
     class Meta:
-        model = models.PlanEstrategico
+        model = models.TipoPlanEspecifico
         fields = "__all__"
 
 
-class PlanEstrategicoAdmin(admin.ModelAdmin):
-    form = PlanEstrategicoAdminForm
+class TipoPlanEspecificoAdmin(admin.ModelAdmin):
+    form = TipoPlanEspecificoAdminForm
     list_display = [
         "last_updated",
-        "plan_estrategico",
         "created",
+        "nombre_plan_especifico",
     ]
     readonly_fields = [
         "last_updated",
-        "plan_estrategico",
         "created",
+        "nombre_plan_especifico",
     ]
 
 
-class PlanProcesoAdminForm(forms.ModelForm):
-
-    class Meta:
-        model = models.PlanProceso
-        fields = "__all__"
-
-
-class PlanProcesoAdmin(admin.ModelAdmin):
-    form = PlanProcesoAdminForm
-    list_display = [
-        "plan_proceso",
-        "created",
-        "last_updated",
-    ]
-    readonly_fields = [
-        "plan_proceso",
-        "created",
-        "last_updated",
-    ]
-
-
+admin.site.register(models.PlanEstrategico, PlanEstrategicoAdmin)
+admin.site.register(models.TipoPlan, TipoPlanAdmin)
 admin.site.register(models.PlanInversion, PlanInversionAdmin)
+admin.site.register(models.PlanProceso, PlanProcesoAdmin)
 admin.site.register(models.Plan, PlanAdmin)
 admin.site.register(models.PlanDesarrollo, PlanDesarrolloAdmin)
-admin.site.register(models.PlanEstrategico, PlanEstrategicoAdmin)
-admin.site.register(models.PlanProceso, PlanProcesoAdmin)
+admin.site.register(models.TipoPlanEspecifico, TipoPlanEspecificoAdmin)

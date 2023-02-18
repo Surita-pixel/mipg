@@ -21,10 +21,10 @@ from . import views
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='index.html'), name='index'),
-    path('Formularios/', include('Formularios.urls')),
     path('Departamentos/', include('Departamentos.urls')),
-    path('Seguimientos/', include('Seguimientos.urls')),
     path('Planes/', include('Planes.urls')),
+    path('Formularios/', include('Formularios.urls')),
+    path('Seguimientos/', include('Seguimientos.urls')),
     path('htmx/', views.htmx_home, name='htmx'),
     path('admin/', admin.site.urls),
 ]

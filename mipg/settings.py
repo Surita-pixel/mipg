@@ -33,10 +33,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'django_htmx',
-    'Formularios',
     'Departamentos',
-    'Seguimientos',
     'Planes',
+    'Formularios',
+    'Seguimientos',
 ]
 
 
@@ -83,10 +83,9 @@ DATABASES = {
 		'USER' : 'postgres',
 		'PASSWORD' : 'betrayed1.',
 		'HOST' : 'localhost', #si tienes otra dirección host debes remplazar esta
-		'PORT' : '', #si lo dejas vacío tomara el puerto por default
+		'PORT' : '' #si lo dejas vacío tomara el puerto por default
 	}
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
