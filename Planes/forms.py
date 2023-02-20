@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.admin import widgets
 from Seguimientos.models import Seguimiento
 from Planes.models import PlanInversion
 from Planes.models import PlanProceso
@@ -36,7 +37,6 @@ class TipoPlanForm(forms.ModelForm):
         fields = [
             "nombre_tipo_plan",
             "plan_proceso",
-            "planes_especificos",
         ]
 
     def __init__(self, *args, **kwargs):
@@ -113,7 +113,6 @@ class TipoPlanEspecificoForm(forms.ModelForm):
         model = models.TipoPlanEspecifico
         fields = [
             "nombre_plan_especifico",
-            "planes_proceso",
         ]
 
     def __init__(self, *args, **kwargs):

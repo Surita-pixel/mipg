@@ -35,20 +35,20 @@ class PlanEstrategico(models.Model):
 
 class TipoPlan(models.Model):
 
+    # Fields
+    nombre_tipo_plan = models.TextField(max_length=100)
     # Relationships
     plan_proceso = models.ForeignKey("Planes.PlanProceso", on_delete=models.CASCADE)
-    planes_especificos = models.ForeignKey("Planes.TipoPlanEspecifico", on_delete=models.CASCADE)
+    planes_especificos = models.ManyToManyField("Planes.TipoPlanEspecifico")
 
-    # Fields
     last_updated = models.DateTimeField(auto_now=True, editable=False)
     created = models.DateTimeField(auto_now_add=True, editable=False)
-    nombre_tipo_plan = models.TextField(max_length=100)
 
     class Meta:
         pass
 
     def __str__(self):
-        return str(self.pk)
+        return str(self.nombre_tipo_plan)
 
     def get_absolute_url(self):
         return reverse("Planes_TipoPlan_detail", args=(self.pk,))
@@ -95,20 +95,20 @@ class PlanInversion(models.Model):
 
 class PlanProceso(models.Model):
 
-    # Relationships
-    planes_de_inversion = models.ForeignKey("Planes.PlanInversion", on_delete=models.CASCADE, blank=True)
-    seguimiento_proceso = models.ForeignKey("Seguimientos.Seguimiento", on_delete=models.CASCADE, blank=True)
-
     # Fields
-    created = models.DateTimeField(auto_now_add=True, editable=False)
     nombre_plan_proceso = models.TextField(max_length=100)
+    # Relationships
+    planes_de_inversion = models.ForeignKey("Planes.PlanInversion", on_delete=models.CASCADE, blank=True, null=True)
+    seguimiento_proceso = models.ForeignKey("Seguimientos.Seguimiento", on_delete=models.CASCADE, blank=True, null=True)
+
+    created = models.DateTimeField(auto_now_add=True, editable=False)
     last_updated = models.DateTimeField(auto_now=True, editable=False)
 
     class Meta:
         pass
 
     def __str__(self):
-        return str(self.pk)
+        return str(self.nombre_plan_proceso)
 
     def get_absolute_url(self):
         return reverse("Planes_PlanProceso_detail", args=(self.pk,))
@@ -126,14 +126,14 @@ class PlanProceso(models.Model):
 
 class Plan(models.Model):
 
+    # Fields
+    plan = models.TextField(max_length=100)
     # Relationships
     oficina = models.ForeignKey("Departamentos.Oficina", on_delete=models.CASCADE)
     planes_desarrollo = models.ForeignKey("Planes.PlanDesarrollo", on_delete=models.CASCADE, blank=True)
 
-    # Fields
     last_updated = models.DateTimeField(auto_now=True, editable=False)
     created = models.DateTimeField(auto_now_add=True, editable=False)
-    plan = models.TextField(max_length=100)
 
     class Meta:
         pass
@@ -157,14 +157,14 @@ class Plan(models.Model):
 
 class PlanDesarrollo(models.Model):
 
+    # Fields
+    plan_desarrollo = models.TextField(max_length=100)
     # Relationships
     formulario_plan_desarrollo = models.ForeignKey("Formularios.Formulario", on_delete=models.CASCADE)
     planes_estrategicos = models.ForeignKey("Planes.PlanEstrategico", on_delete=models.CASCADE, blank=True)
 
-    # Fields
     last_updated = models.DateTimeField(auto_now=True, editable=False)
     created = models.DateTimeField(auto_now_add=True, editable=False)
-    plan_desarrollo = models.TextField(max_length=100)
 
     class Meta:
         pass
@@ -188,19 +188,18 @@ class PlanDesarrollo(models.Model):
 
 class TipoPlanEspecifico(models.Model):
 
-    # Relationships
-    planes_proceso = models.ForeignKey("Planes.PlanProceso", on_delete=models.CASCADE)
-
     # Fields
+    nombre_plan_especifico = models.TextField(max_length=100)
+    # Relationships
+
     last_updated = models.DateTimeField(auto_now=True, editable=False)
     created = models.DateTimeField(auto_now_add=True, editable=False)
-    nombre_plan_especifico = models.TextField(max_length=100)
 
     class Meta:
         pass
 
     def __str__(self):
-        return str(self.pk)
+        return str(self.nombre_plan_especifico)
 
     def get_absolute_url(self):
         return reverse("Planes_TipoPlanEspecifico_detail", args=(self.pk,))

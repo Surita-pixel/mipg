@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django import forms
-
+from django.db.models import ForeignKey
 from . import models
 
 
@@ -26,23 +26,20 @@ class PlanEstrategicoAdmin(admin.ModelAdmin):
 
 
 class TipoPlanAdminForm(forms.ModelForm):
-
     class Meta:
         model = models.TipoPlan
         fields = "__all__"
 
-
 class TipoPlanAdmin(admin.ModelAdmin):
     form = TipoPlanAdminForm
     list_display = [
+        "nombre_tipo_plan",
         "last_updated",
         "created",
-        "nombre_tipo_plan",
     ]
     readonly_fields = [
         "last_updated",
         "created",
-        "nombre_tipo_plan",
     ]
 
 
@@ -66,6 +63,7 @@ class PlanInversionAdmin(admin.ModelAdmin):
 
 class TipoPlanInLine(admin.TabularInline):
     model = models.TipoPlan
+    
 
 class PlanProcesoAdminForm(forms.ModelForm):
 
@@ -98,14 +96,13 @@ class PlanAdminForm(forms.ModelForm):
 class PlanAdmin(admin.ModelAdmin):
     form = PlanAdminForm
     list_display = [
+        "plan",
         "last_updated",
         "created",
-        "plan",
     ]
     readonly_fields = [
         "last_updated",
         "created",
-        "plan",
     ]
 
 
@@ -119,14 +116,13 @@ class PlanDesarrolloAdminForm(forms.ModelForm):
 class PlanDesarrolloAdmin(admin.ModelAdmin):
     form = PlanDesarrolloAdminForm
     list_display = [
+        "plan_desarrollo",
         "last_updated",
         "created",
-        "plan_desarrollo",
     ]
     readonly_fields = [
         "last_updated",
         "created",
-        "plan_desarrollo",
     ]
 
 
@@ -140,14 +136,13 @@ class TipoPlanEspecificoAdminForm(forms.ModelForm):
 class TipoPlanEspecificoAdmin(admin.ModelAdmin):
     form = TipoPlanEspecificoAdminForm
     list_display = [
+        "nombre_plan_especifico",
         "last_updated",
         "created",
-        "nombre_plan_especifico",
     ]
     readonly_fields = [
         "last_updated",
         "created",
-        "nombre_plan_especifico",
     ]
 
 
