@@ -1,8 +1,13 @@
 from django.contrib import admin
 from django import forms
+
 from django.db.models import ForeignKey
 from . import models
+from django.contrib.admin import widgets
 
+class TipoPlanChoiceField(forms.ModelChoiceField):
+    def label_from_instance(self, obj):
+        return obj.nombre_tipo_plan
 
 class PlanEstrategicoAdminForm(forms.ModelForm):
 
@@ -61,20 +66,29 @@ class PlanInversionAdmin(admin.ModelAdmin):
         "created",
     ]
 
-class TipoPlanInLine(admin.TabularInline):
-    model = models.TipoPlan
-    
+
+
 
 class PlanProcesoAdminForm(forms.ModelForm):
+    tipo_plan = TipoPlanChoiceField(queryset=models.TipoPlan.objects.all())
+    tipo_plan_especifico = forms.ModelChoiceField(queryset=models.TipoPlanEspecifico.objects.none())
+
 
     class Meta:
         model = models.PlanProceso
         fields = "__all__"
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if 'instance' in kwargs:
+            tipo_plan_id = kwargs['instance'].tipo_plan_id
+            if tipo_plan_id:
+                tipo_plan = models.TipoPlan.objects.get(id=tipo_plan_id)
+                self.fields['tipo_plan_especifico'].queryset = tipo_plan.planes_especificos.all()
+
 
 class PlanProcesoAdmin(admin.ModelAdmin):
     form = PlanProcesoAdminForm
-    inlines = [TipoPlanInLine]
     list_display = [
         "nombre_plan_proceso",
         "created",
@@ -107,7 +121,6 @@ class PlanAdmin(admin.ModelAdmin):
 
 
 class PlanDesarrolloAdminForm(forms.ModelForm):
-
     class Meta:
         model = models.PlanDesarrollo
         fields = "__all__"
@@ -125,6 +138,8 @@ class PlanDesarrolloAdmin(admin.ModelAdmin):
         "created",
     ]
 
+class TipoPlanEspecificoInline(admin.TabularInline):
+    model = models.TipoPlan.planes_especificos.through
 
 class TipoPlanEspecificoAdminForm(forms.ModelForm):
 
