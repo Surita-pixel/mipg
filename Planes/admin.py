@@ -1,13 +1,9 @@
 from django.contrib import admin
 from django import forms
 
-from django.db.models import ForeignKey
 from . import models
-from django.contrib.admin import widgets
 
-class TipoPlanChoiceField(forms.ModelChoiceField):
-    def label_from_instance(self, obj):
-        return obj.nombre_tipo_plan
+from .forms import TipoPlanChoiceField
 
 class PlanEstrategicoAdminForm(forms.ModelForm):
 

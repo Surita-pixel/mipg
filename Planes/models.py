@@ -39,7 +39,7 @@ class TipoPlan(models.Model):
     # Fields
     nombre_tipo_plan = models.TextField(max_length=100)
     # Relationships
-    plan_proceso = models.ForeignKey("Planes.PlanProceso", on_delete=models.CASCADE)
+    plan_proceso = models.ForeignKey("Planes.PlanProceso", on_delete=models.CASCADE, blank=True, null=True)
     planes_especificos = models.ManyToManyField("Planes.TipoPlanEspecifico")
 
     last_updated = models.DateTimeField(auto_now=True, editable=False)

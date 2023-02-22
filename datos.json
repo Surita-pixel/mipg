@@ -1,0 +1,293 @@
+[
+{
+  "model": "Planes.tipoplan",
+  "pk": 3,
+  "fields": {
+    "nombre_tipo_plan": "PLAN DE GESTION CIUDADANA",
+    "plan_proceso": null,
+    "last_updated": "2023-02-22T02:23:18.494Z",
+    "created": "2023-02-22T02:23:10.796Z",
+    "planes_especificos": [
+      5,
+      6,
+      7
+    ]
+  }
+},
+{
+  "model": "Planes.tipoplan",
+  "pk": 4,
+  "fields": {
+    "nombre_tipo_plan": "PLANES DE GESTION AMBIENTAL",
+    "plan_proceso": null,
+    "last_updated": "2023-02-22T02:27:16.199Z",
+    "created": "2023-02-22T02:27:16.199Z",
+    "planes_especificos": [
+      8,
+      9,
+      10,
+      11,
+      12
+    ]
+  }
+},
+{
+  "model": "Planes.tipoplan",
+  "pk": 5,
+  "fields": {
+    "nombre_tipo_plan": "PLANES DE GESTION DE LA INFORMACION Y LA TECNOLOGIA",
+    "plan_proceso": null,
+    "last_updated": "2023-02-22T02:30:12.046Z",
+    "created": "2023-02-22T02:30:12.046Z",
+    "planes_especificos": [
+      13,
+      14,
+      15,
+      16,
+      17
+    ]
+  }
+},
+{
+  "model": "Planes.tipoplan",
+  "pk": 6,
+  "fields": {
+    "nombre_tipo_plan": "PLAN ESTRATÉGICO DE TALENTO HUMANO",
+    "plan_proceso": null,
+    "last_updated": "2023-02-22T02:33:18.054Z",
+    "created": "2023-02-22T02:33:18.054Z",
+    "planes_especificos": [
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24
+    ]
+  }
+},
+{
+  "model": "Planes.tipoplan",
+  "pk": 7,
+  "fields": {
+    "nombre_tipo_plan": "PLAN DE GESTION DE SEGURIDAD Y SALUD EN EL TRABAJO",
+    "plan_proceso": null,
+    "last_updated": "2023-02-22T02:35:08.598Z",
+    "created": "2023-02-22T02:35:08.598Z",
+    "planes_especificos": [
+      25,
+      26
+    ]
+  }
+},
+{
+  "model": "Planes.planproceso",
+  "pk": 2,
+  "fields": {
+    "nombre_plan_proceso": "compradores",
+    "planes_de_inversion": null,
+    "seguimiento_proceso": null,
+    "created": "2023-02-20T04:44:24.947Z",
+    "last_updated": "2023-02-20T04:44:24.948Z"
+  }
+},
+{
+  "model": "Planes.tipoplanespecifico",
+  "pk": 5,
+  "fields": {
+    "nombre_plan_especifico": "Plan Anticorrupcion y Atención al Ciudadano",
+    "last_updated": "2023-02-22T02:20:13.077Z",
+    "created": "2023-02-22T02:20:13.077Z"
+  }
+},
+{
+  "model": "Planes.tipoplanespecifico",
+  "pk": 6,
+  "fields": {
+    "nombre_plan_especifico": "Plan de Servicio a la Ciudadania",
+    "last_updated": "2023-02-22T02:20:32.075Z",
+    "created": "2023-02-22T02:20:32.075Z"
+  }
+},
+{
+  "model": "Planes.tipoplanespecifico",
+  "pk": 7,
+  "fields": {
+    "nombre_plan_especifico": "Plan de Acción Defenson de la Ciudadanía",
+    "last_updated": "2023-02-22T02:21:04.454Z",
+    "created": "2023-02-22T02:21:04.454Z"
+  }
+},
+{
+  "model": "Planes.tipoplanespecifico",
+  "pk": 8,
+  "fields": {
+    "nombre_plan_especifico": "Plan de gestión integral de residuos peligrosos RESPEL",
+    "last_updated": "2023-02-22T02:24:24.198Z",
+    "created": "2023-02-22T02:24:24.198Z"
+  }
+},
+{
+  "model": "Planes.tipoplanespecifico",
+  "pk": 9,
+  "fields": {
+    "nombre_plan_especifico": "Plan institucional de gestión ambiental",
+    "last_updated": "2023-02-22T02:24:41.478Z",
+    "created": "2023-02-22T02:24:41.478Z"
+  }
+},
+{
+  "model": "Planes.tipoplanespecifico",
+  "pk": 10,
+  "fields": {
+    "nombre_plan_especifico": "Plan de accion interno PAI- manejo adecuado de residuos solidos",
+    "last_updated": "2023-02-22T02:25:20.325Z",
+    "created": "2023-02-22T02:25:20.325Z"
+  }
+},
+{
+  "model": "Planes.tipoplanespecifico",
+  "pk": 11,
+  "fields": {
+    "nombre_plan_especifico": "Plan de acción cuatrienal ambiental PACA",
+    "last_updated": "2023-02-22T02:25:54.326Z",
+    "created": "2023-02-22T02:25:54.326Z"
+  }
+},
+{
+  "model": "Planes.tipoplanespecifico",
+  "pk": 12,
+  "fields": {
+    "nombre_plan_especifico": "Plan integral de movilidad sostenible PMS",
+    "last_updated": "2023-02-22T02:26:10.809Z",
+    "created": "2023-02-22T02:26:10.809Z"
+  }
+},
+{
+  "model": "Planes.tipoplanespecifico",
+  "pk": 13,
+  "fields": {
+    "nombre_plan_especifico": "Plan de seguridad y privacidad de la información",
+    "last_updated": "2023-02-22T02:28:13.666Z",
+    "created": "2023-02-22T02:28:13.666Z"
+  }
+},
+{
+  "model": "Planes.tipoplanespecifico",
+  "pk": 14,
+  "fields": {
+    "nombre_plan_especifico": "Plan estrategico de telecomunicaciones de la información PETI",
+    "last_updated": "2023-02-22T02:28:41.773Z",
+    "created": "2023-02-22T02:28:41.773Z"
+  }
+},
+{
+  "model": "Planes.tipoplanespecifico",
+  "pk": 15,
+  "fields": {
+    "nombre_plan_especifico": "Plan de transformación digital",
+    "last_updated": "2023-02-22T02:29:03.898Z",
+    "created": "2023-02-22T02:29:03.898Z"
+  }
+},
+{
+  "model": "Planes.tipoplanespecifico",
+  "pk": 16,
+  "fields": {
+    "nombre_plan_especifico": "Plan de gestión documental",
+    "last_updated": "2023-02-22T02:29:20.563Z",
+    "created": "2023-02-22T02:29:20.563Z"
+  }
+},
+{
+  "model": "Planes.tipoplanespecifico",
+  "pk": 17,
+  "fields": {
+    "nombre_plan_especifico": "plan institucional de archivo PINAR",
+    "last_updated": "2023-02-22T02:29:37.153Z",
+    "created": "2023-02-22T02:29:37.153Z"
+  }
+},
+{
+  "model": "Planes.tipoplanespecifico",
+  "pk": 18,
+  "fields": {
+    "nombre_plan_especifico": "Plan de previsión de recursos humanos",
+    "last_updated": "2023-02-22T02:31:23.282Z",
+    "created": "2023-02-22T02:31:23.282Z"
+  }
+},
+{
+  "model": "Planes.tipoplanespecifico",
+  "pk": 19,
+  "fields": {
+    "nombre_plan_especifico": "Plan anual de vacancia",
+    "last_updated": "2023-02-22T02:31:38.133Z",
+    "created": "2023-02-22T02:31:38.133Z"
+  }
+},
+{
+  "model": "Planes.tipoplanespecifico",
+  "pk": 20,
+  "fields": {
+    "nombre_plan_especifico": "Programa de induccion y reinduccion",
+    "last_updated": "2023-02-22T02:31:50.944Z",
+    "created": "2023-02-22T02:31:50.944Z"
+  }
+},
+{
+  "model": "Planes.tipoplanespecifico",
+  "pk": 21,
+  "fields": {
+    "nombre_plan_especifico": "Programa de induccion y reinduccion",
+    "last_updated": "2023-02-22T02:31:51.082Z",
+    "created": "2023-02-22T02:31:51.082Z"
+  }
+},
+{
+  "model": "Planes.tipoplanespecifico",
+  "pk": 22,
+  "fields": {
+    "nombre_plan_especifico": "Plan de bienestar e incentivos",
+    "last_updated": "2023-02-22T02:32:13.030Z",
+    "created": "2023-02-22T02:32:13.030Z"
+  }
+},
+{
+  "model": "Planes.tipoplanespecifico",
+  "pk": 23,
+  "fields": {
+    "nombre_plan_especifico": "Plan institucional de capacitacion",
+    "last_updated": "2023-02-22T02:32:26.367Z",
+    "created": "2023-02-22T02:32:26.367Z"
+  }
+},
+{
+  "model": "Planes.tipoplanespecifico",
+  "pk": 24,
+  "fields": {
+    "nombre_plan_especifico": "Plan de desvinculación laboral asistida",
+    "last_updated": "2023-02-22T02:32:43.971Z",
+    "created": "2023-02-22T02:32:43.971Z"
+  }
+},
+{
+  "model": "Planes.tipoplanespecifico",
+  "pk": 25,
+  "fields": {
+    "nombre_plan_especifico": "Plan anual de trabajo del sistema de seguridad y salud en el trabajo",
+    "last_updated": "2023-02-22T02:34:04.862Z",
+    "created": "2023-02-22T02:34:04.862Z"
+  }
+},
+{
+  "model": "Planes.tipoplanespecifico",
+  "pk": 26,
+  "fields": {
+    "nombre_plan_especifico": "Plan de emergencias",
+    "last_updated": "2023-02-22T02:34:11.759Z",
+    "created": "2023-02-22T02:34:11.759Z"
+  }
+}
+]

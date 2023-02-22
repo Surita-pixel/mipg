@@ -1,9 +1,7 @@
 from django import forms
 from django.contrib.admin import widgets
 from Seguimientos.models import Seguimiento
-from Planes.models import PlanInversion
-from Planes.models import PlanProceso
-from Planes.models import TipoPlanEspecifico
+from Planes.models import PlanInversion, PlanProceso, TipoPlanEspecifico, TipoPlan
 from Formularios.models import Formulario
 from Planes.models import PlanInversion
 from Seguimientos.models import Seguimiento
@@ -14,6 +12,9 @@ from Planes.models import PlanEstrategico
 from Planes.models import PlanProceso
 from . import models
 
+class TipoPlanChoiceField(forms.ModelChoiceField):
+    def label_from_instance(self, obj):
+        return obj.nombre_tipo_plan
 
 class PlanEstrategicoForm(forms.ModelForm):
     class Meta:
@@ -60,14 +61,16 @@ class PlanInversionForm(forms.ModelForm):
 
 
 class PlanProcesoForm(forms.ModelForm):
-    
+    tipo_plan = forms.ModelChoiceField(queryset=TipoPlan.objects.all(), empty_label="selecciona un tipo de plan")
     class Meta:
         model = models.PlanProceso
         fields = [
             "nombre_plan_proceso",
-            "planes_de_inversion",
+            "tipo_plan",
             "seguimiento_proceso",
+            "planes_de_inversion"
         ]
+        
 
     def __init__(self, *args, **kwargs):
         super(PlanProcesoForm, self).__init__(*args, **kwargs)
