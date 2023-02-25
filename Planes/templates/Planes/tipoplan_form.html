@@ -10,35 +10,41 @@
 </p>
     
 <form method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-  {{form.errors}}
-  <div class="form-group row">
-      <label class="col-sm-2 col-form-label" for="last_updated">last_updated: </label>
-      <input class="form-control col-sm-10"
-         id="last_updated" type="datetime-local"
-         name="last_updated" value="{{ object.last_updated }}" disabled>
-  </div>
-  <div class="form-group row">
+    {% csrf_token %}
+    {{form.errors}}
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="nombre">nombre: </label>
+      <select class="form-control col-sm-10" id="nombre" name="nombre">
+          {% for choice in form.fields.nombre.choices %}
+          <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+          {% endfor %}
+      </select>
+    </div>
+  
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="sub_categoria">plan especifico: </label>
+        <select class="form-control col-sm-10" id="sub_categoria" name="sub_categoria">
+            {% for choice in form.fields.sub_categoria.choices %}
+            <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+            {% endfor %}
+        </select>
+      </div>
+  
+    <div class="form-group row">
       <label class="col-sm-2 col-form-label" for="created">created: </label>
       <input class="form-control col-sm-10"
          id="created" type="datetime-local"
          name="created" value="{{ object.created }}" disabled>
-  </div>
-  <div class="form-group row">
-      <label class="col-sm-2 col-form-label" for="nombre_tipo_plan">nombre_tipo_plan: </label>
-      <input class="form-control col-sm-10"'
-         id="nombre_tipo_plan" type="text"
-         name="nombre_tipo_plan" value="{{ object.nombre_tipo_plan }}">
-  </div>
-  <div class="form-group row">
-      <label class="col-sm-2 col-form-label" for="plan_proceso">plan_proceso: </label>
-      {{ form.plan_proceso }}
-  </div>
-  <div class="form-group row">
-      <label class="col-sm-2 col-form-label" for="planes_especificos">planes_especificos: </label>
-      {{ form.planes_especificos }}
-  </div>
-  <input type="submit" value="Save" class="btn btn-primary">
-</form>
+    </div>
+  
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="last_updated">last_updated: </label>
+      <input class="form-control col-sm-10"
+         id="last_updated" type="datetime-local"
+         name="last_updated" value="{{ object.last_updated }}" disabled>
+    </div>
+  
+    <input type="submit" value="Save" class="btn btn-primary">
+  </form>
 
 {% endblock %}

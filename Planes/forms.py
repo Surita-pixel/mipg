@@ -31,20 +31,24 @@ class PlanEstrategicoForm(forms.ModelForm):
         self.fields["planes_inversion"].queryset = PlanInversion.objects.all()
 
 
+tipoplan_nombre = (
+    ("PGC", "PLAN DE GESTION CIUDADANA"),
+    ("PGA", "PLANES DE GESTION AMBIENTAL"),
+    ("PGIT", "PLAN DE GESTION DE INFORMACION Y LA TECNOLOGIA"),
+    ("PET", "PLAN ESTRATEGICO DE TALENTO HUMANO"),
+    ("PGSSA", "PLAN DE GESTION DE SEGURIDAD Y SALUD AMBIENTAL"),
+)
 
 class TipoPlanForm(forms.ModelForm):
+    nombre = forms.ChoiceField(choices=tipoplan_nombre)
+    sub_categoria = forms.ModelChoiceField(queryset=TipoPlanEspecifico.objects.filter(filtro__isnull=False))
+    
     class Meta:
         model = models.TipoPlan
         fields = [
             "nombre",
+            "sub_categoria"
         ]
-
-    def __init__(self, *args, **kwargs):
-        super(TipoPlanForm, self).__init__(*args, **kwargs)
-        self.fields["plan_proceso"].queryset = PlanProceso.objects.all()
-        self.fields["planes_especificos"].queryset = TipoPlanEspecifico.objects.all()
-
-
 
 class PlanInversionForm(forms.ModelForm):
     class Meta:
@@ -118,7 +122,4 @@ class TipoPlanEspecificoForm(forms.ModelForm):
             "filtro"
         ]
 
-    def __init__(self, *args, **kwargs):
-        super(TipoPlanEspecificoForm, self).__init__(*args, **kwargs)
-        self.fields["planes_proceso"].queryset = PlanProceso.objects.all()
 

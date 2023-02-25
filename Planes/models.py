@@ -34,20 +34,19 @@ class PlanEstrategico(models.Model):
         return reverse("Planes_PlanEstrategico_htmx_delete", args=(self.pk,))
 
 
-# class TipoPlanBase(models.Model):
-#     nombre = models.TextField(max_length=200)
-#     filtro = models.CharField(max_length=50, blank=True, null=True)
-#     created = models.DateTimeField(auto_now_add=True, editable=False)
-#     last_updated = models.DateTimeField(auto_now=True, editable=False)
-#     class Meta:
-#         db_table = "Plan_TipoPlan"
-#         abstract = True
-
-
-class TipoPlan(models.Model):
+class TipoPlanBase(models.Model):
     nombre = models.TextField(max_length=200)
+    filtro = models.CharField(max_length=50, blank=True, null=True, unique=True)
+    created = models.DateTimeField(auto_now_add=True, editable=False)
+    last_updated = models.DateTimeField(auto_now=True, editable=False)
+    class Meta:
+        db_table = "tipo_plan"
+        abstract = True
+
+
+class TipoPlan(TipoPlanBase):
     plan_proceso = models.ForeignKey("Planes.PlanProceso", on_delete=models.CASCADE, null=True, blank=True)
-    
+    sub_categoria = models.ForeignKey("Planes.TipoPlanEspecifico", to_field="id", on_delete=models.CASCADE)
     class Meta:
         db_table = "tipo_plan"
         managed = False
@@ -68,9 +67,9 @@ class TipoPlan(models.Model):
         return reverse("Planes_TipoPlan_htmx_delete", args=(self.pk,))
     
 
-class TipoPlanEspecifico(models.Model):
-    nombre = models.TextField(max_length=200)
-    filtro = models.CharField(max_length=50, blank=True, null=True)
+class TipoPlanEspecifico(TipoPlanBase):
+    created = models.DateTimeField(auto_now_add=True, editable=False)
+    last_updated = models.DateTimeField(auto_now=True, editable=False)
     class Meta:
         db_table = "tipo_plan"
         managed = False
