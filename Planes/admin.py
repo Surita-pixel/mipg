@@ -34,13 +34,7 @@ class TipoPlanAdminForm(forms.ModelForm):
 class TipoPlanAdmin(admin.ModelAdmin):
     form = TipoPlanAdminForm
     list_display = [
-        "nombre_tipo_plan",
-        "last_updated",
-        "created",
-    ]
-    readonly_fields = [
-        "last_updated",
-        "created",
+        "nombre",
     ]
 
 
@@ -74,13 +68,6 @@ class PlanProcesoAdminForm(forms.ModelForm):
         model = models.PlanProceso
         fields = "__all__"
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        if 'instance' in kwargs:
-            tipo_plan_id = kwargs['instance'].tipo_plan_id
-            if tipo_plan_id:
-                tipo_plan = models.TipoPlan.objects.get(id=tipo_plan_id)
-                self.fields['tipo_plan_especifico'].queryset = tipo_plan.planes_especificos.all()
 
 
 class PlanProcesoAdmin(admin.ModelAdmin):
@@ -134,8 +121,6 @@ class PlanDesarrolloAdmin(admin.ModelAdmin):
         "created",
     ]
 
-class TipoPlanEspecificoInline(admin.TabularInline):
-    model = models.TipoPlan.planes_especificos.through
 
 class TipoPlanEspecificoAdminForm(forms.ModelForm):
 
@@ -147,13 +132,7 @@ class TipoPlanEspecificoAdminForm(forms.ModelForm):
 class TipoPlanEspecificoAdmin(admin.ModelAdmin):
     form = TipoPlanEspecificoAdminForm
     list_display = [
-        "nombre_plan_especifico",
-        "last_updated",
-        "created",
-    ]
-    readonly_fields = [
-        "last_updated",
-        "created",
+        "nombre",
     ]
 
 

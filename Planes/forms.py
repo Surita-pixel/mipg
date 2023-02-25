@@ -36,8 +36,7 @@ class TipoPlanForm(forms.ModelForm):
     class Meta:
         model = models.TipoPlan
         fields = [
-            "nombre_tipo_plan",
-            "plan_proceso",
+            "nombre",
         ]
 
     def __init__(self, *args, **kwargs):
@@ -115,7 +114,8 @@ class TipoPlanEspecificoForm(forms.ModelForm):
     class Meta:
         model = models.TipoPlanEspecifico
         fields = [
-            "nombre_plan_especifico",
+            "nombre",
+            "filtro"
         ]
 
     def __init__(self, *args, **kwargs):
