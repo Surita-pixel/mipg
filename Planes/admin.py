@@ -3,7 +3,7 @@ from django import forms
 
 from . import models
 
-from .forms import TipoPlanChoiceField
+from .forms import TipoPlanChoiceField, TipoPlanForm
 
 class PlanEstrategicoAdminForm(forms.ModelForm):
 
@@ -26,15 +26,14 @@ class PlanEstrategicoAdmin(admin.ModelAdmin):
     ]
 
 
-class TipoPlanAdminForm(forms.ModelForm):
-    class Meta:
-        model = models.TipoPlan
-        fields = "__all__"
+class TipoPlanAdminForm(TipoPlanForm):
+    pass
 
 class TipoPlanAdmin(admin.ModelAdmin):
     form = TipoPlanAdminForm
     list_display = [
         "nombre",
+        "sub_categoria"
     ]
 
 
@@ -133,6 +132,7 @@ class TipoPlanEspecificoAdmin(admin.ModelAdmin):
     form = TipoPlanEspecificoAdminForm
     list_display = [
         "nombre",
+        "filtro"
     ]
 
 
