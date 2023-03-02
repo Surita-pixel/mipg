@@ -85,11 +85,7 @@ class PlanProcesoForm(forms.ModelForm):
 class PlanForm(forms.ModelForm):
     class Meta:
         model = models.Plan
-        fields = [
-            "plan",
-            "oficina",
-            "planes_desarrollo",
-        ]
+        fields = '__all__'
 
     def __init__(self, *args, **kwargs):
         super(PlanForm, self).__init__(*args, **kwargs)

@@ -86,16 +86,29 @@ class PlanAdminForm(forms.ModelForm):
 
     class Meta:
         model = models.Plan
-        fields = "__all__"
+        fields = [
+        "plan_desarrollo",
+        "plan",
+        'fecha_inicio',
+        'fecha_final',
+        'otros_campos',
+    ]
 
 
 class PlanAdmin(admin.ModelAdmin):
     form = PlanAdminForm
     list_display = [
+        "plan_desarrollo",
         "plan",
-        "last_updated",
-        "created",
+        'fecha_inicio',
+        'fecha_final',
+        'otros_campos',
     ]
+
+    def areas_responsables(self, obj):
+        return ", ".join([str(ar) for ar in obj.areas_responsables.all()])
+    areas_responsables.short_description = "Áreas responsables"
+
     readonly_fields = [
         "last_updated",
         "created",

@@ -81,7 +81,7 @@ DATABASES = {
 		'ENGINE': 'django.db.backends.postgresql_psycopg2',
 		'NAME' : 'formularios_db',
 		'USER' : 'postgres',
-		'PASSWORD' : 'betrayed1.',
+		'PASSWORD' : 'pokemon70',
 		'HOST' : 'localhost', #si tienes otra dirección host debes remplazar esta
 		'PORT' : '' #si lo dejas vacío tomara el puerto por default
 	}

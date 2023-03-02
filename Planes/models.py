@@ -1,7 +1,7 @@
 from django import forms
 from django.db import models
 from django.urls import reverse
-
+from jsonfield import JSONField
 
 class PlanEstrategico(models.Model):
 
@@ -37,6 +37,7 @@ class PlanEstrategico(models.Model):
 class TipoPlanBase(models.Model):
     nombre = models.TextField(max_length=200)
     filtro = models.CharField(max_length=50, blank=True, null=True, unique=True)
+    plan = models.ForeignKey("Planes.Plan", on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True, editable=False)
     last_updated = models.DateTimeField(auto_now=True, editable=False)
     class Meta:
@@ -155,10 +156,12 @@ class Plan(models.Model):
 
     # Fields
     plan = models.TextField(max_length=100)
+    fecha_inicio = models.DateField()
+    fecha_final = models.DateField()
+    otros_campos = JSONField(null=True)
     # Relationships
-    oficina = models.ForeignKey("Departamentos.Oficina", on_delete=models.CASCADE)
-    planes_desarrollo = models.ForeignKey("Planes.PlanDesarrollo", on_delete=models.CASCADE, blank=True)
-
+    areas_responsables = models.ManyToManyField("Departamentos.Oficina")
+        
     last_updated = models.DateTimeField(auto_now=True, editable=False)
     created = models.DateTimeField(auto_now_add=True, editable=False)
 
@@ -187,6 +190,7 @@ class PlanDesarrollo(models.Model):
     # Fields
     plan_desarrollo = models.TextField(max_length=100)
     # Relationships
+    plan = models.ForeignKey("Planes.Plan", on_delete=models.CASCADE)
     formulario_plan_desarrollo = models.ForeignKey("Formularios.Formulario", on_delete=models.CASCADE)
     planes_estrategicos = models.ForeignKey("Planes.PlanEstrategico", on_delete=models.CASCADE, blank=True)
 
