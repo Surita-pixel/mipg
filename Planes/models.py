@@ -2,6 +2,7 @@ from django import forms
 from django.db import models
 from django.urls import reverse
 from jsonfield import JSONField
+from django.contrib.postgres.fields import ArrayField
 
 class PlanEstrategico(models.Model):
 
@@ -158,7 +159,7 @@ class Plan(models.Model):
     plan = models.TextField(max_length=100)
     fecha_inicio = models.DateField()
     fecha_final = models.DateField()
-    otros_campos = JSONField(null=True)
+    otros_campos = ArrayField(models.CharField(max_length=200))
     # Relationships
     areas_responsables = models.ManyToManyField("Departamentos.Oficina")
         

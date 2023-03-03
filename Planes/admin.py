@@ -83,11 +83,12 @@ class PlanProcesoAdmin(admin.ModelAdmin):
 
 
 class PlanAdminForm(forms.ModelForm):
-
+    plan_desarrollo = forms.ModelChoiceField(queryset=models.PlanDesarrollo.objects.all())
+    tipo_de_plan = forms.ModelChoiceField(queryset=models.TipoPlan.objects.all())
+    tipo_de_plan_especifico = forms.ModelChoiceField(queryset=models.TipoPlanEspecifico.objects.all())
     class Meta:
         model = models.Plan
         fields = [
-        "plan_desarrollo",
         "plan",
         'fecha_inicio',
         'fecha_final',
@@ -98,7 +99,6 @@ class PlanAdminForm(forms.ModelForm):
 class PlanAdmin(admin.ModelAdmin):
     form = PlanAdminForm
     list_display = [
-        "plan_desarrollo",
         "plan",
         'fecha_inicio',
         'fecha_final',
