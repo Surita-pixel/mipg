@@ -13,7 +13,7 @@ class Oficina(models.Model):
         pass
 
     def __str__(self):
-        return str(self.pk)
+        return str(self.nombre_oficina)
 
     def get_absolute_url(self):
         return reverse("Departamentos_Oficina_detail", args=(self.pk,))

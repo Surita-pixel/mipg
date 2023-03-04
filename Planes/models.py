@@ -38,20 +38,18 @@ class PlanEstrategico(models.Model):
 class TipoPlanBase(models.Model):
     nombre = models.TextField(max_length=200)
     filtro = models.CharField(max_length=50, blank=True, null=True, unique=True)
-    plan = models.ForeignKey("Planes.Plan", on_delete=models.CASCADE)
+    plan = models.ForeignKey("Planes.Plan", on_delete=models.CASCADE, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True, editable=False)
     last_updated = models.DateTimeField(auto_now=True, editable=False)
     class Meta:
-        db_table = "tipo_plan"
         abstract = True
 
 
 class TipoPlan(TipoPlanBase):
     plan_proceso = models.ForeignKey("Planes.PlanProceso", on_delete=models.CASCADE, null=True, blank=True)
-    sub_categoria = models.ForeignKey("Planes.TipoPlanEspecifico", to_field="id", on_delete=models.CASCADE)
-    class Meta:
-        db_table = "tipo_plan"
-        managed = False
+    sub_categoria = models.ForeignKey("Planes.TipoPlanEspecifico", to_field="id", on_delete=models.CASCADE,null=True, blank=True)
+    
+        
     def __str__(self):
         return str(self.nombre)
 
@@ -70,10 +68,8 @@ class TipoPlan(TipoPlanBase):
     
 
 class TipoPlanEspecifico(TipoPlanBase):
-    created = models.DateTimeField(auto_now_add=True, editable=False)
-    last_updated = models.DateTimeField(auto_now=True, editable=False)
     class Meta:
-        db_table = "tipo_plan"
+        db_table = "Planes_tipoplan"
         managed = False
 
     def __str__(self):
@@ -191,9 +187,8 @@ class PlanDesarrollo(models.Model):
     # Fields
     plan_desarrollo = models.TextField(max_length=100)
     # Relationships
-    plan = models.ForeignKey("Planes.Plan", on_delete=models.CASCADE)
-    formulario_plan_desarrollo = models.ForeignKey("Formularios.Formulario", on_delete=models.CASCADE)
-    planes_estrategicos = models.ForeignKey("Planes.PlanEstrategico", on_delete=models.CASCADE, blank=True)
+    plan = models.ForeignKey("Planes.Plan", on_delete=models.CASCADE, blank=True, null=True)
+    planes_estrategicos = models.ForeignKey("Planes.PlanEstrategico", on_delete=models.CASCADE, blank=True, null=True, default=None)
 
     last_updated = models.DateTimeField(auto_now=True, editable=False)
     created = models.DateTimeField(auto_now_add=True, editable=False)
@@ -202,7 +197,7 @@ class PlanDesarrollo(models.Model):
         pass
 
     def __str__(self):
-        return str(self.pk)
+        return str(self.plan_desarrollo)
 
     def get_absolute_url(self):
         return reverse("Planes_PlanDesarrollo_detail", args=(self.pk,))

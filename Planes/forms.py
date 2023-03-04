@@ -83,15 +83,22 @@ class PlanProcesoForm(forms.ModelForm):
 
 
 class PlanForm(forms.ModelForm):
+    areas_responsables = forms.ModelChoiceField(queryset=Oficina.objects.all(),
+                                          widget=forms.RadioSelect(attrs={'class': 'radios'}),
+                                          to_field_name="nombre_oficina")
+    plan_desarrollo = forms.ModelChoiceField(queryset=models.PlanDesarrollo.objects.all(), label="plan desarrollo")
+    tipo_de_plan = forms.ModelChoiceField(queryset=models.TipoPlan.objects.filter(filtro__isnull=True))
+
+    tipo_de_plan_especifico = forms.ModelChoiceField(queryset=models.TipoPlanEspecifico.objects.filter(filtro__isnull=False))
+    
     class Meta:
         model = models.Plan
-        fields = '__all__'
-
-    def __init__(self, *args, **kwargs):
-        super(PlanForm, self).__init__(*args, **kwargs)
-        self.fields["oficina"].queryset = Oficina.objects.all()
-        self.fields["planes_desarrollo"].queryset = PlanDesarrollo.objects.all()
-
+        fields = [
+        "plan",
+        'fecha_inicio',
+        'fecha_final',
+        'otros_campos',
+    ]
 
 
 class PlanDesarrolloForm(forms.ModelForm):
@@ -99,7 +106,6 @@ class PlanDesarrolloForm(forms.ModelForm):
         model = models.PlanDesarrollo
         fields = [
             "plan_desarrollo",
-            "formulario_plan_desarrollo",
             "planes_estrategicos",
         ]
 

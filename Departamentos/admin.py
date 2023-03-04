@@ -19,7 +19,6 @@ class OficinaAdmin(admin.ModelAdmin):
         "created",
     ]
     readonly_fields = [
-        "nombre_oficina",
         "last_updated",
         "created",
     ]

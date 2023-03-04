@@ -2,8 +2,9 @@ from django.contrib import admin
 from django import forms
 
 from . import models
+from Departamentos.models import Oficina
 
-from .forms import TipoPlanChoiceField, TipoPlanForm
+from .forms import TipoPlanChoiceField, TipoPlanForm, PlanForm
 
 class PlanEstrategicoAdminForm(forms.ModelForm):
 
@@ -82,22 +83,9 @@ class PlanProcesoAdmin(admin.ModelAdmin):
     ]
 
 
-class PlanAdminForm(forms.ModelForm):
-    plan_desarrollo = forms.ModelChoiceField(queryset=models.PlanDesarrollo.objects.all())
-    tipo_de_plan = forms.ModelChoiceField(queryset=models.TipoPlan.objects.all())
-    tipo_de_plan_especifico = forms.ModelChoiceField(queryset=models.TipoPlanEspecifico.objects.all())
-    class Meta:
-        model = models.Plan
-        fields = [
-        "plan",
-        'fecha_inicio',
-        'fecha_final',
-        'otros_campos',
-    ]
-
 
 class PlanAdmin(admin.ModelAdmin):
-    form = PlanAdminForm
+    form = PlanForm
     list_display = [
         "plan",
         'fecha_inicio',
@@ -105,9 +93,6 @@ class PlanAdmin(admin.ModelAdmin):
         'otros_campos',
     ]
 
-    def areas_responsables(self, obj):
-        return ", ".join([str(ar) for ar in obj.areas_responsables.all()])
-    areas_responsables.short_description = "Áreas responsables"
 
     readonly_fields = [
         "last_updated",
@@ -138,7 +123,7 @@ class TipoPlanEspecificoAdminForm(forms.ModelForm):
 
     class Meta:
         model = models.TipoPlanEspecifico
-        fields = "__all__"
+        fields = ["nombre","filtro"]
 
 
 class TipoPlanEspecificoAdmin(admin.ModelAdmin):
