@@ -3,6 +3,9 @@ from django.urls import reverse_lazy
 from . import models
 from . import forms
 
+# class Home
+class UserView(generic.TemplateView):
+    template_name = "userview.html"
 
 class PlanEstrategicoListView(generic.ListView):
     model = models.PlanEstrategico
@@ -116,6 +119,7 @@ class PlanListView(generic.ListView):
 class PlanCreateView(generic.CreateView):
     model = models.Plan
     form_class = forms.PlanForm
+    template_name = "formulacion-planes.html"
 
 
 class PlanDetailView(generic.DetailView):

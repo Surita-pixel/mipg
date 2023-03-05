@@ -84,21 +84,30 @@ class PlanProcesoForm(forms.ModelForm):
 
 class PlanForm(forms.ModelForm):
     areas_responsables = forms.ModelChoiceField(queryset=Oficina.objects.all(),
-                                          widget=forms.RadioSelect(attrs={'class': 'radios'}),
+                                          widget=forms.CheckboxSelectMultiple(attrs={'class': 'checkboxes', 'required': True}),
                                           to_field_name="nombre_oficina")
-    plan_desarrollo = forms.ModelChoiceField(queryset=models.PlanDesarrollo.objects.all(), label="plan desarrollo")
-    tipo_de_plan = forms.ModelChoiceField(queryset=models.TipoPlan.objects.filter(filtro__isnull=True))
+    plan_desarrollo = forms.ModelChoiceField(queryset=models.PlanDesarrollo.objects.all(), label="plan desarrollo",
+                                             widget=forms.Select(attrs={'class': 'select w-select', 'id':"Nombre-del-plan", 'required': True}))
+    tipo_de_plan = forms.ModelChoiceField(queryset=models.TipoPlan.objects.filter(filtro__isnull=True),
+                                          widget=forms.Select(attrs={'class': 'select w-select', 'required': True}))
 
-    tipo_de_plan_especifico = forms.ModelChoiceField(queryset=models.TipoPlanEspecifico.objects.filter(filtro__isnull=False))
-    
+    tipo_de_plan_especifico = forms.ModelChoiceField(queryset=models.TipoPlanEspecifico.objects.filter(filtro__isnull=False),
+                                                     widget=forms.Select(attrs={'class': 'select w-select', 'required': True}))
+
     class Meta:
         model = models.Plan
         fields = [
-        "plan",
-        'fecha_inicio',
-        'fecha_final',
-        'otros_campos',
-    ]
+            "plan",
+            'fecha_inicio',
+            'fecha_final',
+            'otros_campos',
+        ]
+        widgets = {
+            # 'plan': forms.CharField(required=True),
+            'fecha_inicio': forms.DateInput(attrs={'type': 'date', 'required': True}),
+            'fecha_final': forms.DateInput(attrs={'type': 'date', 'required': True}),
+        }
+
 
 
 class PlanDesarrolloForm(forms.ModelForm):
