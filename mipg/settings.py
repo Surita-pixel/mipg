@@ -76,12 +76,23 @@ WSGI_APPLICATION = 'mipg.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
+"""DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.postgresql_psycopg2',
 		'NAME' : 'formularios_db',
 		'USER' : 'postgres',
 		'PASSWORD' : 'pokemon70',
+		'HOST' : 'localhost', #si tienes otra dirección host debes remplazar esta
+		'PORT' : '' #si lo dejas vacío tomara el puerto por default
+	}
+}"""
+
+DATABASES = {
+	'default': {
+		'ENGINE': 'django.db.backends.postgresql_psycopg2',
+		'NAME' : 'nmipg',
+		'USER' : 'postgres',
+		'PASSWORD' : 'Pg2021+',
 		'HOST' : 'localhost', #si tienes otra dirección host debes remplazar esta
 		'PORT' : '' #si lo dejas vacío tomara el puerto por default
 	}
