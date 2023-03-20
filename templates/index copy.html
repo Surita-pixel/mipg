@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+  Hola {{ user.username }}!
+  <div class="m-2"><h4>Modulos</h4></div>
+<div class="m-2"><a class="btn btn-light" href="{% url 'estructura_PlanDeDesarrollo_list' %}">Plan De Desarrollo</a></div>
+<div class="m-2"><a class="btn btn-light" href="{% url 'estructura_Informe_list' %}">Informe</a></div>
+<div class="m-2"><a class="btn btn-light" href="{% url 'estructura_Plan_list' %}">Plan</a></div>
+<div class="m-2"><a class="btn btn-light" href="{% url 'estructura_Proyecto_list' %}">Proyecto</a></div>
+<div class="m-2"><a class="btn btn-light" href="{% url 'estructura_Campo_list' %}">Campo</a></div>
+<div class="m-2"><a class="btn btn-light" href="{% url 'estructura_evidencia_list' %}">Evidencia</a></div>
+{% endblock %}

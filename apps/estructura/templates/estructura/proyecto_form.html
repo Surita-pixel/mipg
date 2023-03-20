@@ -1,0 +1,46 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    
+<p>
+    <a class="btn btn-light" href="{% url 'estructura_Proyecto_list' %}">
+    Proyecto Listing
+    </a>
+</p>
+    
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{form.errors}}
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="codigo">codigo: </label>
+  <input class="form-control col-sm-10" id="codigo" type="text" name="codigo" value="{{ object.codigo }}">
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="nombre">nombre: </label>
+  <input class="form-control col-sm-10" id="nombre" type="text" name="nombre" value="{{ object.nombre }}">
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="logro_de_ciudad">logro_de_ciudad: </label>
+  <input class="form-control col-sm-10" id="logro_de_ciudad" type="text" name="logro_de_ciudad" value="{{ object.logro_de_ciudad }}">
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="creado">creado: </label>
+  <input class="form-control col-sm-10" id="creado" type="datetime-local" name="creado" value="{{ object.creado }}" disabled>
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="ultima_actualizacion">ultima_actualizacion: </label>
+  <input class="form-control col-sm-10" id="ultima_actualizacion" type="datetime-local" name="ultima_actualizacion" value="{{ object.ultima_actualizacion }}" disabled>
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="objetivo_general">objetivo_general: </label>
+  <input class="form-control col-sm-10" id="objetivo_general" type="text" name="objetivo_general" value="{{ object.objetivo_general }}">
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="Proposito">Proposito: </label>
+  <input class="form-control col-sm-10" id="Proposito" type="text" name="Proposito" value="{{ object.Proposito }}">
+  </div>
+  <input type="submit" value="Save" class="btn btn-primary">
+</form>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    
+<p>
+    <a class="btn btn-light" href="{% url 'estructura_evidencia_list' %}">
+    evidencia Listing
+    </a>
+</p>
+    
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{form.errors}}
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="ultima_actualizacion">ultima_actualizacion: </label>
+  <input class="form-control col-sm-10" id="ultima_actualizacion" type="datetime-local" name="ultima_actualizacion" value="{{ object.ultima_actualizacion }}" disabled>
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="creado_por">creado_por: </label>
+  <input class="form-control col-sm-10" id="creado_por" type="datetime-local" name="creado_por" value="{{ object.creado_por }}" disabled>
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="evidencia">evidencia: </label>
+  <input class="form-control col-sm-10" id="evidencia" type="text" name="evidencia" value="{{ object.evidencia }}">
+  </div>
+  <input type="submit" value="Save" class="btn btn-primary">
+</form>
+
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block content %}
+
+<script type="text/javascript">
+
+
+ $(document).ready(function(){
+     $("#search").keyup(function(){
+     _this = this;
+     // Show only matching TR, hide rest of them
+     $.each($("#usertable tbody tr"), function() {
+     if($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
+     $(this).hide();
+     else
+     $(this).show();
+     });
+     });
+  });
+
+    function abrir_modal(url){
+            $('#ventana_modal').load(url, function()
+            {
+                $(this).modal({
+
+                    backdrop: 'static',
+                    keyboard: false
+
+                })
+
+            $(this).modal('show');
+
+        });
+        return false;
+    }
+</script>
+
+<div id="ventana_modal" class="modal fade" role="dialog"></div>
+  <!-- Modal -->
+<div class="modal fade" tabindex="-1" role="dialog" id="modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content"></div>
+  </div>
+</div>
+
+<table>
+  <tr>
+    <input type="text" class="form-control pull-right" style="width:20%" id="search" placeholder="Buscar usuario...">
+    <td><a class="btn btn-primary" onclick="location.href" href="#"><i class="fa fa-user-plus"></i> Nuevo Usuario</a></td>
+  </tr>
+</table>
+
+
+<div class="table-responsive">
+    <table id="usertable" class="table table-striped">
+    	<thead>
+        <tr>
+            <th scope="col">Usuario</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for object in usuarioslist %}
+            <tr>
+                <td>{{object.NOMBRE_USUARIO}}</td>
+                <td>{{object.CORREO}}</td>
+                <td>
+                    <a class="btn btn-primary" onclick="return abrir_modal('')" href="#"><span class="fa fa-eye"></span> Ver</a>
+                    <a class="btn btn-primary" onclick="return abrir_modal('')" href="#"><span class="fa fa-pen"></span> Editar</a>
+                   {% if object.ES_ACTIVO %}
+                    <a class="btn btn-danger" onclick="return abrir_modal('')" href="#"><span class="fa fa-exclamation"></span> Inactivar</a>
+                   {% else %}
+                     <a class="btn btn-success" onclick="return abrir_modal('')" href="#"><span class="fa fa-check"></span> Activar</a>
+                   {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+
+    </tbody>
+
+	</table>
+
+     <!-- Mensajes de error -->
+        <div class="container">
+            <div class="row">
+                {% for message in messages %}
+                    <div class="alert {{ message.tags }}">
+                        <a class="close" href="#" data-dismiss="alert"> ×</a>
+                           {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,66 @@
+
+
+{% load static %}
+
+{% block extra_js%}
+    <script src="http://malsup.github.com/jquery.form.js"></script>
+{% endblock %}
+
+{% block content %}
+    
+<!--<p>-->
+<!--    <a class="btn btn-light" href="{% url 'Usuarios_Usuario_list' %}">-->
+<!--    Usuarios Internos-->
+<!--    </a>-->
+<!--</p>-->
+
+
+
+<div  id="modal"  class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h3 class="modal-title">Detalles del Usuario</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="table table-hover">
+            <table id="usertable" class="table table-striped">
+                <thead>
+                  <tr>
+                      <th scope="col"></th>
+                      <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Nombre Usuario:</td>
+                        <td>{{ object.NOMBRE_USUARIO }}</td>
+                    </tr>
+                    <tr>
+                        <td>Nombre Completo:</td>
+                        <td>{{ object.NOMBRE_COMPLETO }}</td>
+                    </tr>
+                    <tr>
+                        <td>Departamento:</td>
+                        <td>{{ object.DEPARTAMENTO }}</td>
+                    </tr>
+                    <tr>
+                        <td>Correo:</td>
+                        <td>{{ object.CORREO }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+      </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+
+  </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+{% endblock %}

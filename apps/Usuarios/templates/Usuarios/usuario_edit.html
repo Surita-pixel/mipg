@@ -1,0 +1,172 @@
+
+{% load static %}
+{% block content %}
+
+
+
+<script type="text/javascript">
+
+    $('form').submit(function(e){
+        // si la cantidad de checkboxes "chequeados" es cero,
+        // entonces se evita que se envíe el formulario y se
+        // muestra una alerta al usuario
+        if ($('input[type=checkbox]:checked').length === 0) {
+            e.preventDefault();
+            swal("Por favor seleccione un rol!");
+        }
+
+        if ($("#ENTIDAD").val() == '') {
+            e.preventDefault();
+            swal("Por favor seleccione una entidad!");
+        }
+    });
+
+
+ </script>
+
+<div  id="modal"  class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h3 class="modal-title">Editar Usuario</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <form method="POST"  action="{% url 'Usuarios_Usuario_editsave' %}" enctype="multipart/form-data">
+
+          {% csrf_token %}
+          {{form.errors}}
+        <input  name="ID_USUARIO" type="hidden" id="hdIdUser" value="{{useridselected}}">
+        <!-- Nombre  de usuario input -->
+        <div class="container">
+            <label class="form-label" for="form6Example8">Nombre de usuario</label>
+            <input type="text" id="form6Example8" class="form-control" name="NOMBRE_USUARIO" readonly value="{{username}}" />
+        </div>
+
+          <!-- Nombre completo input -->
+        <div class="container">
+          <label class="form-label" for="form6Example4">Nombre Completo</label>
+          <input type="text" id="form6Example4" class="form-control" name="NOMBRE_COMPLETO" readonly value="{{nombre}}" />
+        </div>
+
+          <!-- Depto input -->
+        <div class="container">
+            <label class="form-label" for="form6Example5">Departamento</label>
+            <input type="text" id="form6Example5" class="form-control" name="DEPARTAMENTO" readonly value="{{depto}}"/>
+        </div>
+
+            <!-- Correo input -->
+          <div class="container">
+             <div class="row">
+                <div class="col">
+                  <div class="form-outline">
+                    <label class="form-label" for="form6Example1">Correo</label>
+                    <input type="email" id="form6Example1" class="form-control" readonly name="CORREO" value="{{correo}}" />
+                  </div>
+                </div>
+             </div>
+          </div>
+          <br>
+            <!-- Entidades-->
+          <div class="container">
+             <div class="row">
+                <div class="col">
+                    <label class="form-label" for="ENTIDAD">Entidad</label> <br>
+                      {% if request.session.domain == 'dadep' %}
+                          <select disabled class="form-control" aria-label=".form-select-lg example" name="ENTIDAD" id="ENTIDAD" >
+                      {% else %}
+                          <select class="form-control" aria-label=".form-select-lg example" name="ENTIDAD" id="ENTIDAD"  >
+                      {% endif %}
+                            <option value="{{entidad}}">Seleccione...</option>
+                                {% for entidad in entidades %}
+                                    {% if request.session.domain == 'dadep'  and entidad.ID_ENTIDAD == 3 %}
+                                      <option selected="selected" value="{{ entidad.ID_ENTIDAD }}">{{ entidad.NOMBRE_ENTIDAD }}</option>
+                                    {% elif entidad.ID_ENTIDAD == entidadSelect %}
+                                      <option selected="selected"  value="{{ entidad.ID_ENTIDAD }}">{{ entidad.NOMBRE_ENTIDAD }}</option>
+                                    {% else %}
+                                      <option value="{{ entidad.ID_ENTIDAD }}">{{ entidad.NOMBRE_ENTIDAD }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                        </select>
+                        <br>
+
+                </div>
+             </div>
+          </div>
+          <br>
+
+            <!-- Rol del usuario input -->
+          <div class="container">
+            <div class="row">
+               <div class="col">
+                    <div class="table-responsive">
+                       <table id="usertable" class="table table-striped">
+                          <thead>
+                              <tr>
+                                  <th scope="col">Rol del usuario</th>
+                                  <th scope="col"></th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              {% for rol in roles %}
+                                  {% for rolusr in RolesUsuario %}
+                                      {% if rolusr.ROL_id == rol.ID_ROL %}
+                                          <tr>
+                                              <td><label>{{rol.NOMBRE_ROL}}</label></td>
+                                              <td><input checked type="checkbox" name="rolesform" value="{{rol.ID_ROL}}"></td>
+                                          </tr>
+                                      {% endif %}
+                                  {% endfor %}
+                              {% endfor %}
+
+                              {% for rol in resultsDemasRoles %}
+                                          <tr>
+                                              <td><label>{{rol.NOMBRE_ROL}}</label></td>
+                                              <td><input type="checkbox" name="rolesform" value="{{rol.ID_ROL}}"></td>
+                                          </tr>
+                              {% endfor %}
+
+                          </tbody>
+                       </table>
+                    </div>
+               </div>
+               <div class="col">
+
+               </div>
+            </div>
+          </div>
+
+            <!-- Mensajes de error -->
+        <div class="container">
+            <div class="row">
+                {% for message in messages %}
+                    <div class="alert {{ message.tags }}">
+                        <a class="close" href="#" data-dismiss="alert">×</a>
+                           {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Botón de guardar -->
+        <div class="container" >
+            <div class="row">
+                <input type="submit" value="Guardar Usuario Editado" class="btn btn-primary"/>
+            </div>
+        </div>
+        </form>
+
+        <br>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+
+      </div>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+
+{% endblock %}

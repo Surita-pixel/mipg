@@ -1,0 +1,22 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    
+<p>
+    <a class="btn btn-light" href="{% url 'estructura_PlanDeDesarrollo_list' %}">
+    PlanDeDesarrollo Listing
+    </a>
+</p>
+    
+<table class="table">
+    <tr><td>vigencia_fin</td><td>{{ object.vigencia_fin }}</td></tr>
+    <tr><td>meta_nombre</td><td>{{ object.meta_nombre }}</td></tr>
+    <tr><td>fecha_inicio</td><td>{{ object.fecha_inicio }}</td></tr>
+    <tr><td>vigencia_inicio</td><td>{{ object.vigencia_inicio }}</td></tr>
+    <tr><td>ultima_actualizacion</td><td>{{ object.ultima_actualizacion }}</td></tr>
+    <tr><td>indicador_nombre</td><td>{{ object.indicador_nombre }}</td></tr>
+</table>
+<a class="btn btn-primary" href="{{object.get_update_url}}">Edit</a>
+
+{% endblock %}

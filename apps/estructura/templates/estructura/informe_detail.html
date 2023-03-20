@@ -1,0 +1,20 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    
+<p>
+    <a class="btn btn-light" href="{% url 'estructura_Informe_list' %}">
+    Informe Listing
+    </a>
+</p>
+    
+<table class="table">
+    <tr><td>periodo_reportado</td><td>{{ object.periodo_reportado }}</td></tr>
+    <tr><td>creado_por</td><td>{{ object.creado_por }}</td></tr>
+    <tr><td>ultima_actualizacion</td><td>{{ object.ultima_actualizacion }}</td></tr>
+    <tr><td>año</td><td>{{ object.año }}</td></tr>
+</table>
+<a class="btn btn-primary" href="{{object.get_update_url}}">Edit</a>
+
+{% endblock %}

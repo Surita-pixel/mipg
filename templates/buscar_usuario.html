@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar usuario</title>
+</head>
+<body>
+    {% extends "base.html" %}
+
+    {% block content %}
+    <h1>Administración de usuarios</h1>
+    <form action="/buscar_usuario/" method="post">
+        {% csrf_token %}
+        <label for="buscar_usuario">Buscar usuario</label>
+        <input id="buscar_usuario" type="email" pattern=".+@dadep\.gov.co" size="90" required name="usuario" placeholder="Ingrese el nombre de usuario">
+        <input type="submit" value="Buscar">
+    </form>
+
+
+    {% if data %}
+    <form action="/crear_usuario/" method="post">
+        {% csrf_token %}
+    <p>username: 
+        <input type="text" name="usuario" value="{{ data.nombre_usuario }}" readonly></p>
+    <p>Correo: 
+       <input type="email" id="correo" name="correo" value="{{ data.correo }}" readonly></p>
+    <p>Nombres: 
+        <input type="text" id="nombres" name="nombres" value="{{ data.nombres }}" readonly></p>
+    <p>Apellidos: <input type="text" id="apellidos" name="apellidos" value="{{ data.apellidos }}" readonly></p>
+    <p>Dependencia: <input type="text" id="dependencia" name="dependencia" value="{{ data.dependencia }}" readonly></p>
+    <p>Estado: <input type="text" id="activo" name="activo" value="{{ data.estado }}" readonly></p>
+    <p>Roles: 
+        <select name="roles" id="roles" multiple>
+        {% for rol in data.roles %}
+            <option value="{{rol.id}}">{{ rol.rol }}</option>
+        {% endfor %}
+        </select>
+    </p>
+    <input type="submit" value="Crear Usuario">
+    </form>
+    {% endif %}
+    {% if usuarios %}
+    <br>
+    <div class="card">
+        <div class="card-header">
+            Listado de usuarios
+        </div>
+        
+        <div class="card-body">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Usuario</th>
+                        <th>Correo</th>
+                        <th>Dependencia</th>
+                        <th>Editar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for usuario in usuarios %}
+                <tr>
+                    <td> {{ usuario.usuario }}</td>
+                    <td>{{ usuario.correo }}</td>
+                    <td>{{ usuario.dependencia }}</td>
+                    <td><a href="{% url 'editar_usuario' usuario.id %}">Editar</a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endif %}  
+    {% endblock %}    
+</body>
+</html>

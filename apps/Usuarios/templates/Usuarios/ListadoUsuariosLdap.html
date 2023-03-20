@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+
+<script type="text/javascript">
+
+function SoloLetras(letra) {
+
+    tecla = (document.all) ? letra.keyCode : letra.which;
+
+//Tecla de retroceso para borrar, y espacio siempre la permite
+    if (tecla == 8 || tecla == 32) {
+        return true;
+    }
+
+// Patrón de entrada
+    patron = /[A-Za-z]/;
+    tecla_final = String.fromCharCode(tecla);
+    return patron.test(tecla_final);
+}
+
+ $( document ).ready(function() {
+    $('#myModal').modal('toggle')
+});
+
+
+    function abrir_modal(url){
+            $('#ventana_modal').load(url, function()
+            {
+                $(this).modal({
+
+                    backdrop: 'static',
+                    keyboard: false
+
+                })
+
+            $(this).modal('show');
+
+        });
+        return false;
+    }
+
+</script>
+
+
+<h3 class="modal-title">Seleccione un usuario en Ldap</h3>
+       <br>
+            <form id="theform" name = "theform" method="POST" action="{% url 'BuscarUsrLDAP' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{form.errors}}
+                    <input type="text" onkeypress="return SoloLetras(event)" class="form-control pull-left" style="width:50%" id="searchLdap" name = "searchLdap" placeholder="Buscar nombre, apellido ó nombre de usuario...">
+                    <button   id="btnLdap" name = "btnLdap" type="submit" class="btn btn-default"  data-toggle="modal" data-target="#myModal" ><i class="fa fa-search pull-right"></i></button>
+            </form>
+            <br>
+            {% if listusuariosbase %}
+            <table id="tblldap"  >
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Correo electrónico</th>
+                    <th>Departamento</th>
+                    <th>Seleccionar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in listusuariosbase %}
+                    <tr>
+                        <td>{{ user.nombre }}</td>
+                        <td>{{ user.correo }}</td>
+                        <td>{{ user.depto }}</td>
+                        <td><a class="btn btn-primary" onclick="location.href='{% url 'UsuarioLdapSeleccionado' user.nombre user.correo user.depto user.username  %}'" href="#" >Seleccionar</a></td>
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+
+            </table>
+            {% endif %}
+
+{% endblock %}

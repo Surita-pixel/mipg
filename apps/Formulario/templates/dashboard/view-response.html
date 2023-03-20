@@ -1,0 +1,40 @@
+{% extends "form/base.html" %}
+
+{% block title %}
+    Form
+{% endblock %}
+
+{% block main %}
+    <h1>View Data</h1>
+    <form>
+        {{data}}
+        {% for d in data %}
+            <div>
+                <p>{{ d.1 }}</p>
+                {% if d.0 == 0 %}
+                    <input class="form-control" value="{{ d.2 }}" disabled>
+                {% elif d.0 == 1 %}
+                    {% for i in d.3 %}
+                        {% if i.id == d.2.id %}
+                            <input type="radio" checked disabled> {{ i.label }} <br>
+                        {% else %}
+                            <input type="radio" disabled> {{ i.label }} <br>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <br>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary" disabled>Enviar</button>
+    </form>
+    <br><br><br>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <!-- <li class="page-item"><a class="page-link" href="#">Previous</a></li> -->
+          {% for r in rs %}
+            <li class="page-item"><a class="page-link" href="/formulario/list/{{ f.id }}/{{ r.0.id }}/">Versión {{ r.1 }}</a></li>
+          {% endfor %}
+          <!-- <li class="page-item"><a class="page-link" href="#">Next</a></li> -->
+        </ul>
+    </nav>
+{% endblock %}

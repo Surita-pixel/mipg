@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action="/editar_usuario/{{user.id}}/" method="post">
+    {% csrf_token %}
+<p>username: 
+    <input type="text" name="usuario" value="{{ user.usuario }}" readonly></p>
+<p>Correo: 
+   <input type="email" id="correo" name="correo" value="{{ user.correo }}" readonly></p>
+<p>Nombres: 
+    <input type="text" id="nombres" name="nombres" value="{{ user.nombres }}" readonly></p>
+<p>Apellidos: <input type="text" id="apellidos" name="apellidos" value="{{ user.apellidos }}" readonly></p>
+<p>Dependencia: <input type="text" id="dependencia" name="dependencia" value="{{ user.dependencia }}" readonly></p>
+<p>Estado: <input type="text" id="activo" name="activo" value="{{ user.activo }}" readonly></p>
+<p>Roles asignados: 
+{% for rol in data.roles %}
+    <span>{{ rol.rol }}</option>
+{% endfor %}
+</p>
+<p>Asignar roles: 
+    <select name="roles" id="roles" multiple>
+    {% for role in t_rol %}
+        <option value="{{role.id}}">{{ role.rol }}</option>
+    {% endfor %}
+    </select>
+</p>
+<input type="submit" value="Editar Usuario">
+</form>
+{% endblock %}

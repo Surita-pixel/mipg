@@ -1,0 +1,46 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    
+<p>
+    <a class="btn btn-light" href="{% url 'estructura_PlanDeDesarrollo_list' %}">
+    PlanDeDesarrollo Listing
+    </a>
+</p>
+    
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{form.errors}}
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="vigencia_fin">vigencia_fin: </label>
+  <input class="form-control col-sm-10" id="vigencia_fin" type="number" name="vigencia_fin" value="{{ object.vigencia_fin }}">
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="meta_nombre">meta_nombre: </label>
+  <input class="form-control col-sm-10" id="meta_nombre" type="text" name="meta_nombre" value="{{ object.meta_nombre }}">
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="fecha_inicio">fecha_inicio: </label>
+  <input class="form-control col-sm-10" id="fecha_inicio" type="datetime-local" name="fecha_inicio" value="{{ object.fecha_inicio }}">
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="vigencia_inicio">vigencia_inicio: </label>
+  <input class="form-control col-sm-10" id="vigencia_inicio" type="number" name="vigencia_inicio" value="{{ object.vigencia_inicio }}">
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="ultima_actualizacion">ultima_actualizacion: </label>
+  <input class="form-control col-sm-10" id="ultima_actualizacion" type="datetime-local" name="ultima_actualizacion" value="{{ object.ultima_actualizacion }}" disabled>
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label" for="indicador_nombre">indicador_nombre: </label>
+  <input class="form-control col-sm-10" id="indicador_nombre" type="text" name="indicador_nombre" value="{{ object.indicador_nombre }}">
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label" for="creado_por">creado por: </label>
+    <input class="form-control col-sm-10" id="creado_por" type="text" name="creado_por" value="{{ object.creado_por }}">
+    </div>
+  <input type="submit" value="Save" class="btn btn-primary">
+</form>
+
+{% endblock %}

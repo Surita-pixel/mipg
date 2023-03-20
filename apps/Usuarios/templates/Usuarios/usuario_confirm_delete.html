@@ -1,0 +1,53 @@
+
+
+{% block content %}
+<div  id="modal"  class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+        <div class="modal-header">
+          <h3 class="modal-title">Usuario</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+
+
+                {% if object.ES_ACTIVO %}
+                <form method="post" action="{% url 'Usuarios_Usuario_edit_user' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                      <p>Esta seguro de Inactivar "{{ object }}"?</p>
+                      <input name="ID_USUARIO" type="hidden" value="{{object.ID_USUARIO}}">
+                      <input name="NOMBRE_USUARIO" type="hidden" value="{{object.NOMBRE_USUARIO}}">
+                      <input name="ES_ACTIVO" type="hidden" value="false">
+                    <div>
+                      <input class="btn btn-danger" value="Inactivar Usuario" type="submit">
+                    </div>
+                </form>
+                {% else %}
+                  <form method="post" action="{% url 'Usuarios_Usuario_edit_user' %}" enctype="multipart/form-data">
+                     {% csrf_token %}
+                     <p>Esta seguro de Activar "{{ object }}"?</p>
+                        <input name="ID_USUARIO" type="hidden" value="{{object.ID_USUARIO}}">
+                        <input name="NOMBRE_USUARIO" type="hidden" value="{{object.NOMBRE_USUARIO}}">
+                        <input name="ES_ACTIVO" type="hidden" value="true">
+                     <div>
+                        <input class="btn btn-success" value="Activar Usuario" type="submit">
+                     </div>
+                   </form>
+                {% endif %}
+
+
+
+
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+{% endblock %}

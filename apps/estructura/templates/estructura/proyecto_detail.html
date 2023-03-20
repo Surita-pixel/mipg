@@ -1,0 +1,23 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    
+<p>
+    <a class="btn btn-light" href="{% url 'estructura_Proyecto_list' %}">
+    Proyecto Listing
+    </a>
+</p>
+    
+<table class="table">
+    <tr><td>codigo</td><td>{{ object.codigo }}</td></tr>
+    <tr><td>nombre</td><td>{{ object.nombre }}</td></tr>
+    <tr><td>logro_de_ciudad</td><td>{{ object.logro_de_ciudad }}</td></tr>
+    <tr><td>creado</td><td>{{ object.creado }}</td></tr>
+    <tr><td>ultima_actualizacion</td><td>{{ object.ultima_actualizacion }}</td></tr>
+    <tr><td>objetivo_general</td><td>{{ object.objetivo_general }}</td></tr>
+    <tr><td>Proposito</td><td>{{ object.Proposito }}</td></tr>
+</table>
+<a class="btn btn-primary" href="{{object.get_update_url}}">Edit</a>
+
+{% endblock %}

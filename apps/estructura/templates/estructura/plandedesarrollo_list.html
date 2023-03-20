@@ -1,0 +1,13 @@
+
+{% extends "base.html" %}
+{% block content %}
+{% for object in object_list %}
+
+  <div class="m-2">
+    <h5 class="card-title">Modulo Plan de desarrolllo</h5>
+    <a href="{{object.get_absolute_url}}">{{object.meta_nombre}}</a>
+    <small class="ml-5"><a href="{% url 'estructura_PlanDeDesarrollo_delete' object.pk %}">{{object.pk}}-{{object.meta_nombre}} (Eliminar)</a></small>
+  </div>
+{% endfor %}
+<div><a class="btn btn-primary" href="{% url 'estructura_PlanDeDesarrollo_create' %}">Crear nuevo PlanDeDesarrollo</a></div>
+{% endblock %}
