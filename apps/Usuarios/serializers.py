@@ -24,11 +24,4 @@ class UsuarioActivoForm(serializers.ModelSerializer):
             "ES_ACTIVO",
         ]
 
-class UsuarioRolForm(serializers.ModelSerializer):
-    class Meta:
-        model = models.Usuario_Rol
-        fields = [
-            "ID_USUARIO",
-            "ID_ROL",
-        ]
 

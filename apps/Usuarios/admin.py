@@ -32,5 +32,3 @@ class UsuarioAdmin(admin.ModelAdmin):
 
 
 admin.site.register(models.Usuario, UsuarioAdmin)
-admin.site.register(models.Rol)
-admin.site.register(models.Permiso)
