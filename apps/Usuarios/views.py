@@ -1,8 +1,7 @@
 from django.shortcuts import redirect, render
 from apps.Usuarios.forms import LoginForm
-from django.contrib.auth import  login
 from apps.Usuarios.authbackend import LDAPAuthentication
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from apps.Usuarios.ldap import Ldap
 from rest_framework.response import Response
@@ -12,6 +11,8 @@ from .forms import LoginForm
 from .ldap import Ldap
 from django.contrib.auth.models import Group
 
+from django.contrib.auth.models import Group
+from . import models
 
 
 @login_required(login_url="/login/")
@@ -58,16 +59,17 @@ def buscar_usuario(request):
 
         if result == None:
             msg = "Usuario no encontrado en el directorio activo"
-        data = {
-            'nombre_usuario': result['nombre_usuario'],
-            'correo': result['correo'],
-            'nombres': result['nombres'],
-            'apellidos': result['apellidos'],
-            'nombre_completo': result['nombre_completo'],
-            'dependencia': result['dependencia'],
-            'estado': result['activo'],
-            'roles': roles,
-        }
+        else:
+            data = {
+                'nombre_usuario': result['nombre_usuario'],
+                'correo': result['correo'],
+                'nombres': result['nombres'],
+                'apellidos': result['apellidos'],
+                'nombre_completo': result['nombre_completo'],
+                'dependencia': result['dependencia'],
+                'estado': result['activo'],
+                'roles': roles,
+            }
 
     return render(request, "buscar_usuario.html", {"data": data, "msg": msg, "usuarios": usuarios})
 
@@ -92,13 +94,23 @@ def login(request):
     return render(request, "login.html", {"form": form, "msg": msg})
 
 def editar_usuario(request, pk):
-    data = {}
     if request.method == "GET":
         user = models.Usuario.objects.get(id=pk)
-        roles = ', '.join(map(str, user.groups.all()))
-        t_rol = Group.objects.all()
-        return render(request, 'editar_usuario.html', {'user': user, 'data': roles, 't_rol': t_rol})
-
+        # Obtener los roles del usuario y de los que no son
+        user_roles = user.groups.all()
+        roles = Group.objects.exclude(id__in=user_roles.values_list('id', flat=True))
+        # Obtener todos los roles
+        all_roles = Group.objects.all()
+        # Separar los roles en dos listas: asignados y no asignados
+        assigned_roles = []
+        unassigned_roles = []
+        for role in all_roles:
+            if role in user_roles:
+                assigned_roles.append(role)
+            else:
+                unassigned_roles.append(role)
+        return render(request, 'editar_usuario.html', {'user': user, 'assigned_roles': assigned_roles, 'unassigned_roles': unassigned_roles})
+    
     elif request.method == 'POST':
         roles = request.POST.getlist('roles')
         q = models.Usuario.objects.get(id=pk)
@@ -113,6 +125,8 @@ def editar_usuario(request, pk):
         q.usuario_modifica = 'dcobos'
         q.save()
         user_id = models.Usuario.objects.filter(id=pk).first()
-        for rol in roles:
-            user_id.groups.add(rol)
-        return redirect('buscar_usuario')
+        if user_id is None:
+            pass
+        else:
+            user_id.groups.set(roles)
+        return redirect('/buscar_usuario')
